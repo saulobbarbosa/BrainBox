@@ -1,0 +1,274 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #090D18;
+    scroll-behavior: smooth;
+}
+
+/*Header Principal*/
+.header-principal {
+    background-color: #090D18;
+    width: 100%;
+    height: 5.5rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.brainbox-logo {
+    display: flex;
+    width: 15rem;
+    margin: 2rem;
+}
+
+.logo-brainbox {
+    width: 5rem;
+    margin: auto 0.8rem auto 4rem;
+}
+
+.logo-brainbox:hover {
+    cursor: pointer;
+}
+
+/*Barra e Botão de Pesquisa*/
+.search {
+    display: flex;
+    margin: auto;
+}
+
+/*Barra de Pesquisa*/
+.search-bar {
+    background: radial-gradient(50% 200% at 50% 51%, rgba(3, 5, 94, 0.1) 0%, rgba(195, 221, 255, 0.15) 100%);
+    border-width: 1.5px 0px 0.5px 0.5px;
+    border-style: solid;
+    border-color: rgba(195, 221, 255, 0.5);
+    border-radius: 10px 0px 0px 10px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    width: 500px;
+    height: 35px;
+    color: rgba(248, 251, 255, 0.75);
+    font: 400 0.8rem "Poppins";
+    transition: all 0.5s;
+    margin-right: 0;
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: rgba(248, 251, 255, 0.4);
+    font: 400 0.8rem "Poppins";
+    margin: auto;
+    padding: 1.5rem;
+}
+
+.search-bar:focus {
+    box-shadow: 0px 2px 40px rgba(172, 173, 255, 0.4);
+    border-color: rgba(195, 221, 255, 0.75);
+}
+
+.search-bar:hover {
+    box-shadow: 0px 2px 40px rgba(172, 174, 255, 0.15);
+}
+
+/*Botão de Pesquisa*/
+.search-btn {
+    width: 50px;
+    height: 35px;
+    background: linear-gradient(220deg, #03045E -40%, #0002C4 -20%, #62B6CB 100%);
+    border-width: 1.5px 0.5px 0px 0px;
+    border-style: solid;
+    border-color: rgba(195, 221, 255, 0.5);
+    border-radius: 0px 6px 6px 0px;
+    transition: all 0.5s;
+    margin-left: 0;
+}
+
+.search-btn:hover {
+    box-shadow: 0px 2px 40px rgba(146, 147, 255, 0.4);
+    background: linear-gradient(180deg, #0002C4 -50%, #4886C9 35%, #62B6CB 100%);
+}
+
+/*Botão de Usuário*/
+.bi-user {
+    margin: auto 1rem auto auto;
+    transition: all 0.25s;
+}
+
+.bi-user:hover {
+    fill: #62B6CB;
+    cursor: pointer;
+}
+
+/*Botão de Compra*/
+.bi-basket {
+    margin: auto auto auto 1rem;
+    transition: all 0.25s;
+}
+
+.bi-basket:hover {
+    fill: #62B6CB;
+    cursor: pointer;
+}
+
+/*Menu Principal*/
+nav {
+    line-height: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(90deg, #000276 0%, #0608C4 35%, #4886C9 85%, #62B6CB 100%);
+}
+
+/*Categorias*/
+.categorias-menu {
+    margin-inline: 3rem;
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.categorias-menu:hover {
+    letter-spacing: 0.25em;
+}
+
+.bi-search {
+    position: relative;
+    left: 9px;
+    top: 5.5px;
+}
+
+.bi-list {
+    margin-inline: 2rem;
+    position: relative;
+    top: 1px;
+    transition: all 0.25s;
+}
+
+.bi-list:hover {
+    cursor: pointer;
+}
+
+
+/*Formulario*/
+.login {
+    display: grid;
+    justify-content: center;
+}
+
+.titulo-login {
+    color: #FFFFFF;
+    font: 600 3rem "Poppins";
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-login {
+    width: 26rem;
+    height: 2rem;
+    background: none;
+    border-style: solid;
+    border-width: 0px 0px 2.5px 0px;
+    border-color: #F8FBFF;
+    transition: all 0.2s;
+    margin-bottom: 1rem;
+    color: #F8FBFF;
+    font: 400 1rem "Poppins";
+}
+
+.form-login::-webkit-input-placeholder {
+    font: 400 1rem "Poppins";
+    color: #F8FBFF;
+}
+
+.form-login:focus {
+    border-image:linear-gradient(to left, #4864c9 0%, #62B6CB 100%) 1;
+    cursor: text;
+    outline: none;
+}
+
+.form-login:focus::-webkit-input-placeholder {
+    color: #f8fbff76;
+}
+
+.button-login {
+    color: #FFFFFF;
+    font: 500 1.5rem "Poppins";
+    width: 26rem;
+    height: 3rem;
+    background: linear-gradient(220deg, #03045E -40%, #0002C4 -20%, #62B6CB 100%);
+    border-radius: 8px;
+    border: none;
+    margin-top: 1rem;
+    transition: all 0.25s;
+}
+
+.button-login:hover {
+    box-shadow: 0px 2px 40px rgba(146, 147, 255, 0.4);
+    background: linear-gradient(180deg, #0058c4 -50%, #4886C9 35%, #62B6CB 100%);
+}
+
+.cadastro, .btn-cadastro {
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.btn-cadastro:hover {
+    font-weight: 600;
+}
+
+/*Rodapé*/
+footer {
+    background-color: #090D18;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-footer {
+    color: #F8FBFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 2rem 6rem 0rem 6rem;
+}
+
+.line {
+    width: 190px;
+    height: 10px;
+    margin: 0rem 6rem 1rem 6rem;
+    background: linear-gradient(90deg, #0608C4 -35%, #62B6CB 100%);
+}
+
+.info-footer {
+    font-family: "Poppins", sans-serif;
+    color: #F8FBFF;
+    margin: 1rem 5.8rem 2rem 5.8rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.categorias-footer {
+    margin: 0;
+    padding: 1rem;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: #F8FBFF;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+a:-webkit-any-link:hover {
+    font-weight: 500;
+    cursor: pointer;
+}

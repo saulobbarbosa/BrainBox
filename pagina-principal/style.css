@@ -1,0 +1,305 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8FBFF;
+    scroll-behavior: smooth;
+}
+
+/*Header Principal*/
+.header-principal {
+    background-color: #090D18;
+    width: 100%;
+    height: 5.5rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.brainbox-logo {
+    display: flex;
+    width: 15rem;
+    margin: 2rem;
+}
+
+.logo-brainbox {
+    width: 5rem;
+    margin: auto 0.8rem auto 4rem;
+}
+
+.logo-brainbox:hover {
+    cursor: pointer;
+}
+
+/*Barra e Botão de Pesquisa*/
+.search {
+    display: flex;
+    margin: auto;
+}
+
+/*Barra de Pesquisa*/
+.search-bar {
+    background: radial-gradient(50% 200% at 50% 51%, rgba(3, 5, 94, 0.1) 0%, rgba(195, 221, 255, 0.15) 100%);
+    border-width: 1.5px 0px 0.5px 0.5px;
+    border-style: solid;
+    border-color: rgba(195, 221, 255, 0.5);
+    border-radius: 10px 0px 0px 10px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    width: 500px;
+    height: 35px;
+    color: rgba(248, 251, 255, 0.75);
+    font: 400 0.8rem "Poppins";
+    transition: all 0.5s;
+    margin-right: 0;
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: rgba(248, 251, 255, 0.4);
+    font: 400 0.8rem "Poppins";
+    margin: auto;
+    padding: 1.5rem;
+}
+
+.search-bar:focus {
+    box-shadow: 0px 2px 40px rgba(172, 173, 255, 0.4);
+    border-color: rgba(195, 221, 255, 0.75);
+}
+
+.search-bar:hover {
+    box-shadow: 0px 2px 40px rgba(172, 174, 255, 0.15);
+}
+
+/*Botão de Pesquisa*/
+.search-btn {
+    width: 50px;
+    height: 35px;
+    background: linear-gradient(220deg, #03045E -40%, #0002C4 -20%, #62B6CB 100%);
+    border-width: 1.5px 0.5px 0px 0px;
+    border-style: solid;
+    border-color: rgba(195, 221, 255, 0.5);
+    border-radius: 0px 6px 6px 0px;
+    transition: all 0.5s;
+    margin-left: 0;
+}
+
+.search-btn:hover {
+    box-shadow: 0px 2px 40px rgba(146, 147, 255, 0.4);
+    background: linear-gradient(180deg, #0002C4 -50%, #4886C9 35%, #62B6CB 100%);
+}
+
+/*Botão de Usuário*/
+.bi-user {
+    margin: auto 1rem auto auto;
+    transition: all 0.25s;
+}
+
+.bi-user:hover {
+    fill: #62B6CB;
+    cursor: pointer;
+}
+
+/*Botão de Compra*/
+.bi-basket {
+    margin: auto auto auto 1rem;
+    transition: all 0.25s;
+}
+
+.bi-basket:hover {
+    fill: #62B6CB;
+    cursor: pointer;
+}
+
+/*Menu Principal*/
+nav {
+    line-height: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(90deg, #000276 0%, #0608C4 35%, #4886C9 85%, #62B6CB 100%);
+}
+
+/*Categorias*/
+.categorias-menu {
+    margin-inline: 3rem;
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.categorias-menu:hover {
+    letter-spacing: 0.25em;
+}
+
+.bi-search {
+    position: relative;
+    left: 9px;
+    top: 5.5px;
+}
+
+.bi-list {
+    margin-inline: 2rem;
+    position: relative;
+    top: 1px;
+}
+
+.bi-list:hover {
+    cursor: pointer;
+}
+
+/*Carrossel*/
+
+/*Ofertas do Dia*/
+.ofertas-do-dia {
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    grid-template-areas:
+        "titulo titulo titulo titulo titulo"
+        "oferta1 oferta2 oferta3 oferta4 oferta5";
+    font-family: 'Poppins';
+}
+
+.ofertas-do-dia-titulo {
+    font-weight: 600;
+    font-size: 3rem;
+    text-align: center;
+    color: #090D18;
+    grid-area: titulo;
+    margin-top: 5rem;
+}
+
+.oferta {
+    width: 14rem;
+    height: 24rem;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 20px -5px rgba(4, 5, 52, 0.2);
+    border-radius: 8px;
+    margin-inline: 1rem;
+    display: grid;
+}
+
+.oferta1 {
+    grid-area: oferta1;
+}
+.oferta2 {
+    grid-area: oferta2;
+}
+.oferta3 {
+    grid-area: oferta3;
+}
+.oferta4 {
+    grid-area: oferta4;
+}
+
+.oferta-titulo {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #090D18;
+}
+
+.preco-antes-oferta {
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration-line: line-through;
+    margin-inline: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.preco-oferta {
+    font-size: 1.5rem;
+    margin-inline: 1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.img-oferta {
+    width: 14rem;
+    height: 14rem;
+}
+
+.img-oferta:hover {
+    cursor: pointer;
+}
+
+.line-oferta {
+    background: linear-gradient(90deg, #0608C4 -35%, #62B6CB 100%);
+    width: 14rem;
+    height: 0.8rem;
+    border-radius: 0px 0px 8px 8px;
+}
+
+/*Slogan*/
+.slogan {
+    font: 600 2rem "Poppins";
+    text-align: center;
+    color: #090D18;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.slogan-btn {
+    width: 620px;
+    height: 80px;
+    background: linear-gradient(94.47deg, #0002C4 0%, #62B6CB 102.42%);
+    border-radius: 50px 15px;
+    border: none;
+    color: #F8FBFF;
+    font: 700 3rem "Kode Mono";
+    margin-bottom: 7rem;
+}
+
+/*Rodapé*/
+footer {
+    background-color: #090D18;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-footer {
+    color: #F8FBFF;
+    font: 700 3rem "Poppins";
+    margin: 2rem 6rem 0rem 6rem;
+}
+
+.line {
+    width: 190px;
+    height: 10px;
+    margin: 0rem 6rem 1rem 6rem;
+    background: linear-gradient(90deg, #0608C4 -35%, #62B6CB 100%);
+}
+
+.info-footer {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    color: #F8FBFF;
+    margin: 1rem 5.8rem 2rem 5.8rem;
+    text-align: left;
+}
+
+.categorias-footer {
+    margin: 0;
+    padding: 1rem;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: #F8FBFF;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+a:-webkit-any-link:hover {
+    font-weight: 500;
+    cursor: pointer;
+}
