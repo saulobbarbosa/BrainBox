@@ -89,15 +89,41 @@ body {
     background: linear-gradient(180deg, #0002C4 -50%, #4886C9 35%, #62B6CB 100%);
 }
 
-/*Botão de Usuário*/
-.bi-user {
+/*Botão de Login e Cadastro*/
+.btn-user-login {
+    color: #F8FBFF;
+    font: 400 1rem "Poppins";
     margin: auto 1rem auto auto;
+    background-color: #0c1223;
+    border: none;
+    border-radius: 6px;
+    width: 6.5rem;
+    height: 2rem;
     transition: all 0.25s;
 }
 
-.bi-user:hover {
-    fill: #62B6CB;
+.btn-user-login:hover {
     cursor: pointer;
+    border: 1px solid #62B6CB;
+    color: #62B6CB;
+}
+
+.btn-user-signup {
+    margin: auto 1.8rem auto 0;
+    transition: all 0.25s;
+    background: linear-gradient(220deg, #03045E -40%, #0002C4 -20%, #62B6CB 100%);
+    border: none;
+    border-radius: 6px;
+    width: 8rem;
+    height: 2rem;
+    color: #F8FBFF;
+    font: 400 1rem "Poppins";
+}
+
+.btn-user-signup:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 40px rgba(146, 147, 255, 0.4);
+    background: linear-gradient(180deg, #0002C4 -50%, #4886C9 35%, #62B6CB 100%);
 }
 
 /*Botão de Compra*/
