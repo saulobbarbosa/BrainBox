@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - BrainBox</title>
+    <link rel="stylesheet" href="pagina-principal/style.css">
+    <script src="vendor/scripts/JQuery.js" defer></script>
+    <script src="controllers/campoPesquisa.js" defer></script>
+    <script src="controllers/veriLogin.js" defer></script>
+    <script src="pagina-principal/script.js" defer></script>
+    <link rel="shortcut icon" type="imagex/png" href="pagina-principal/assets/logo/minilogo-brainbox.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    
+</head>
+
+<body>
+    <header class="header-principal">
+        <a href="index.html">
+            <div class="brainbox-logo">
+                <img src="pagina-principal/assets/logo/logo-brainbox.svg" class="logo-brainbox">
+                <img src="pagina-principal/assets/logo/logotype-brainbox.svg" class="logotipo-brainbox">
+            </div>
+        </a>
+        <div class="search">
+            <input type="search" placeholder="Pesquise aqui" class="search-bar search">
+            <button class="search-btn search">
+                <img src="pagina-principal/assets/img/svgs/search-icon.svg" class="search-icon">
+        </div>
+        
+        <span id="veriLogin">
+            <a href="login.html"><button class="btn-user-login">Login</button></a>
+            <a href="cadastro.html"><button class="btn-user-signup">Cadastrar</button></a>
+        </span>
+        <img src="pagina-principal/assets/img/svgs/basket-shopping.svg" class="btn-basket">
+    </header>
+    <nav>
+        <img src="pagina-principal/assets/img/svgs/menu-icon.svg" class="btn-list">
+        <a href="index.html" class="categorias-menu">HOME</a>
+        <a href="ofertas.html" class="categorias-menu">OFERTAS</a>
+        <a href="" class="categorias-menu">MAIS VENDIDOS</a>
+    </nav>
+    <main>
+        <div class="Container">
+            <button id="voltar"><img src="pagina-principal/assets/img/svgs/angle-left.svg"></button>
+            <div class="imagens">
+                <img src="pagina-principal/assets/img/carrossel/brainbox-imgcarrossel1.png" alt="imagem1"
+                    class="slider on">
+                <img src="pagina-principal/assets/img/carrossel/brainbox-imgcarrossel2.png" alt="imagem2"
+                    class="slider">
+                <img src="pagina-principal/assets/img/carrossel/brainbox-imgcarrossel3.png" alt="imagem3"
+                    class="slider">
+            </div>
+            <button id="proxima"><img src="pagina-principal/assets/img/svgs/angle-right.svg"></button>
+        </div>
+        <section class="ofertas-do-dia">
+            <h1 class="ofertas-do-dia-titulo">Ofertas do Dia</h1>
+            <a href="produto1.html">
+                <article class="oferta1 oferta">
+                    <img src="pagina-principal/assets/img/jabra-headset.jpg" class="img-oferta1 img-oferta">
+                    <div>
+                        <h3 class="oferta-titulo" href="">Jabra Evolve 80 Ms Stereo Headset 7899-823-109</h3>
+                        <p class="preco-antes-oferta">R$ 3.789</p>
+                        <p class="preco-oferta">R$ 3.218,18</p>
+                    </div>
+                    <button class="btn-comprar">Comprar</button>
+                </article>
+            </a>
+            <a href="#">
+                <article class="oferta2 oferta">
+                    <img src="pagina-principal/assets/img/windows11-laptop.jpg" class="img-oferta2 img-oferta">
+                    <div>
+                        <h3 class="oferta-titulo">Notebook Lenovo, 512GB SSD, Windows 11</h3>
+                        <p class="preco-antes-oferta">R$ 3.500,00</p>
+                        <p class="preco-oferta">R$ 2.499,99</p>
+                    </div>
+                    <button class="btn-comprar">Comprar</button>
+                </article>
+            </a>
+            <a href="#">
+                <article class="oferta3 oferta">
+                    <img src="pagina-principal/assets/img/kit-3coolers.jpeg" class="img-oferta3 img-oferta">
+                    <div>
+                        <h3 class="oferta-titulo">Kit Com 3 Coolers Rise Mode Energy, ARGB Preto</h3>
+                        <p class="preco-antes-oferta">R$ 136,35</p>
+                        <p class="preco-oferta">R$ 74,99</p>
+                    </div>
+                    <button class="btn-comprar">Comprar</button>
+                </article>
+            </a>
+            <a href="#">
+                <article class="oferta4 oferta">
+                    <img src="pagina-principal/assets/img/keyboard1.jpg" class="img-oferta4 img-oferta">
+                    <div>
+                        <h3 class="oferta-titulo">Teclado Gamer Mecânico Led Azul RGB Preto</h3>
+                        <p class="preco-antes-oferta">R$ 258,81</p>
+                        <p class="preco-oferta">R$ 213,98</p>
+                    </div>
+                    <button class="btn-comprar">Comprar</button>
+                </article>
+            </a>
+            <a href="">
+                <article class="oferta5 oferta">
+                    <img src="pagina-principal/assets/img/Headphone-Melobuds-Bluetooth-Multiponto-Preto.png"
+                        class="img-oferta5 img-oferta">
+                    <div>
+                        <h3 class="oferta-titulo">Headphone Qcy Melobuds, Bluetooth, Preto</h3>
+                        <p class="preco-antes-oferta">R$ 219,00</p>
+                        <p class="preco-oferta">R$ 197,00</p>
+                    </div>
+                    <button class="btn-comprar">Comprar</button>
+                </article>
+            </a>
+        </section>
+        <div class="slogan">
+            Abrindo novas possibilidades <button class="slogan-btn">dentro da caixa</button>
+        </div>
+        <h1 class="marcas-recomendadas-titulo">Marcas Recomendadas</h1>
+        <section class="marcas-recomendadas">
+            <article class="marca1 marca">
+                <img src="pagina-principal/assets/img/marcas/Intel.png" class="img-marca">
+                <h2 class="marca-titulo">Intel</h2>
+            </article>
+            <article class="marca2 marca">
+                <img src="pagina-principal/assets/img/marcas/redragon.jpg" class="img-marca">
+                <h2 class="marca-titulo">Redragon</h2>
+            </article>
+            <article class="marca3 marca">
+                <img src="pagina-principal/assets/img/marcas/apple-logo.avif" class="img-marca">
+                <h2 class="marca-titulo">Apple</h2>
+            </article>
+            <article class="marca4 marca">
+                <img src="pagina-principal/assets/img/marcas/logitech.webp" class="img-marca">
+                <h2 class="marca-titulo">Logitech</h2>
+            </article>
+            <article class="marca5 marca">
+                <img src="pagina-principal/assets/img/marcas/risemode.png" class="img-marca">
+                <h2 class="marca-titulo">Rise Mode</h2>
+            </article>
+            <article class="marca6 marca">
+                <img src="pagina-principal/assets/img/marcas/corsair.jpeg" class="img-marca">
+                <h2 class="marca-titulo">Corsair</h2>
+            </article>
+            <article class="marca7 marca">
+                <img src="pagina-principal/assets/img/marcas/samsung.png" class="img-marca">
+                <h2 class="marca-titulo">Samsung</h2>
+            </article>
+            <article class="marca8 marca">
+                <img src="pagina-principal/assets/img/marcas/hyperx.jpeg" class="img-marca">
+                <h2 class="marca-titulo">Hyper X</h2>
+            </article>
+            <article class="marca9 marca">
+                <img src="pagina-principal/assets/img/marcas/acer.png" class="img-marca">
+                <h2 class="marca-titulo">Acer</h2>
+            </article>
+            <article class="marca10 marca">
+                <img src="pagina-principal/assets/img/marcas/jabra.png" class="img-marca">
+                <h2 class="marca-titulo">Jabra</h2>
+            </article>
+        </section>
+        <div class="banner">
+            <img src="pagina-principal/assets/img/banner-brainbox1.png" class="img-banner">
+        </div>
+        <h1 class="histnav-titulo">Seu Histórico de Navegação</h1>
+        <section class="histnav">
+            <article class="produto">
+                <img src="pagina-principal/assets/img/gaming-red-mouse.jpg" class="img-produto">
+            </article>
+            <article class="produto">
+                <img src="pagina-principal/assets/img/keyboard1.jpg" class="img-produto">
+            </article>
+            <article class="produto">
+                <img src="pagina-principal/assets/img/kit-3coolers.jpeg" class="img-produto">
+            </article>
+            <article class="produto">
+                <img src="pagina-principal/assets/img/windows11-laptop.jpg" class="img-produto">
+            </article>
+            <article class="produto">
+                <img src="pagina-principal/assets/img/kotion-gaming-headset.webp" class="img-produto">
+            </article>
+        </section>
+    </main>
+    <footer>
+        <h1 class="titulo-footer">Fale Conosco</h1>
+        <div class="line"></div>
+        <table class="info-footer">
+            <tr class="categorias-footer">
+                <th>INFO</th>
+                <th>REDES SOCIAIS</th>
+                <th>CONTATO</th>
+                <th>PRODUTOS</th>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Sobre Nós</a></td>
+                <td><a href="">Instagram</a></td>
+                <td>brainbox-team@gmail.com</td>
+                <td><a href="">Notebooks</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Parcerias</a></td>
+                <td><a href="">Tiktok</a></td>
+                <td>+55 00 0000-000</td>
+                <td><a href="">Smartphones</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Privacidade</a></td>
+                <td><a href="">Facebook</a></td>
+                <td></td>
+                <td><a href="">Headsets</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Acessibilidade</a></td>
+                <td><a href="">LinkedIn</a></td>
+                <th>SUA CONTA</th>
+                <td><a href="">Hardwares</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Formas de Pagamento</a></td>
+                <td><a href="">YouTube</a></td>
+                <td><a href="">Perfil</a></td>
+                <td><a href="">Monitores</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Política de Cookies</a></td>
+                <td><a href="">X</a></td>
+                <td><a href="">Meus Pedidos</a></td>
+                <td><a href="">Teclado e Mouse</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="">Acessórios</a></td>
+            </tr>
+        </table>
+    </footer>
+</body>
+
+</html>

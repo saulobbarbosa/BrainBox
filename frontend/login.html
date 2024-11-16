@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="controllers/campoPesquisa.js" defer></script>
+    <script src="vendor/scripts/JQuery.js" defer></script>
+    <script src="controllers/controllerLogin.js" defer></script>
+    <title>Faça Login - BrainBox</title>
+    <link rel="stylesheet" href="pagina-login/style.css">
+    <link rel="shortcut icon" type="imagex/png" href="pagina-login/assets/logo/minilogo-brainbox.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header-principal">
+        <a href="index.html">
+            <div class="brainbox-logo">
+                <img src="pagina-login/assets/logo/logo-brainbox.svg" class="logo-brainbox">
+                <img src="pagina-login/assets/logo/logotype-brainbox.svg" class="logotipo-brainbox">
+            </div>
+        </a>
+        <div class="search">
+            <input type="search" placeholder="Pesquise aqui" class="search-bar search">
+            <button class="search-btn search">
+                <img src="pagina-login/assets/img/svgs/search-icon.svg" class="search-icon">
+        </div>
+        <span id="veriLogin">
+            <a href="login.html"><button class="btn-user-login">Login</button></a>
+            <a href="cadastro.html"><button class="btn-user-signup">Cadastrar</button></a>
+        </span>
+        <img src="pagina-principal/assets/img/svgs/basket-shopping.svg" class="btn-basket">
+    </header>
+    <nav>
+        <img src="pagina-login/assets/img/svgs/menu-icon.svg" class="btn-list">
+        <a href="index.html" class="categorias-menu">HOME</a>
+        <a href="ofertas.html" class="categorias-menu">OFERTAS</a>
+        <a href="" class="categorias-menu">MAIS VENDIDOS</a>
+    </nav>
+    <main>
+        <form id="login" class="login">
+            <h1 class="titulo-login">Faça seu Login</h1>
+            <label for="email" class="email">E-mail</label>
+            <input type="email" placeholder="Seu E-mail Aqui" class="form-login" id="email" required>
+            <label for="password" class="senha">Senha</label>
+            <input type="password" placeholder="Sua Senha Aqui" class="form-login" id="password" required>
+            <a href="" class="a"><span class="esq-senha">Esqueceu a senha?</span></a>
+            <button class="button-login">Login</button>
+            <h3 class="cadastro">Não tem uma conta?<a href="cadastro.html"><span class="btn-cadastro"> Se cadastre</span></a></h3>
+        </form>
+    </main>
+    <footer>
+        <h1 class="titulo-footer">Fale Conosco</h1>
+        <div class="line"></div>
+
+        <table class="info-footer">
+            <tr class="categorias-footer">
+                <th>INFO</th>
+                <th>REDES SOCIAIS</th>
+                <th>CONTATO</th>
+                <th>PRODUTOS</th>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Sobre Nós</a></td>
+                <td><a href="">Instagram</a></td>
+                <td>brainbox-team@gmail.com</td>
+                <td><a href="">Notebooks</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Parcerias</a></td>
+                <td><a href="">Tiktok</a></td>
+                <td>+55 00 0000-000</td>
+                <td><a href="">Smartphones</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Privacidade</a></td>
+                <td><a href="">Facebook</a></td>
+                <td></td>
+                <td><a href="">Headsets</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Acessibilidade</a></td>
+                <td><a href="">LinkedIn</a></td>
+                <th>SUA CONTA</th>
+                <td><a href="">Hardwares</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Formas de Pagamento</a></td>
+                <td><a href="">YouTube</a></td>
+                <td><a href="">Perfil</a></td>
+                <td><a href="">Monitores</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td><a href="">Política de Cookies</a></td>
+                <td><a href="">X</a></td>
+                <td><a href="">Meus Pedidos</a></td>
+                <td><a href="">Teclado e Mouse</a></td>
+            </tr>
+            <tr class="categorias-footer">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="">Acessórios</a></td>
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>
