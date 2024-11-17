@@ -109,10 +109,53 @@ body {
     text-decoration: underline;
 }
 
+/*Botão de Sair*/
+.btn-user-logout {
+    width: 6vw;
+    height: 2vw;
+    color: #F8FBFF;
+    font: 400 1vw "Poppins";
+    margin: auto 0 auto auto;
+    background: none;
+    border: none;
+    border-radius: 0.3vw;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.btn-user-logout:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/*Botão de Usuário*/
+.btn-user {
+    width: 2vw;
+    height: auto;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+#veriLogin {
+    height: 5.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#veriLogin div {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #F8FBFF;
+    font: 500 1vw "Poppins ";
+}
+
+/*Botão de Cadastro*/
 .btn-user-signup {
     margin: auto 1.5vw auto 0;
     transition: all 0.25s;
-    /*background: linear-gradient(220deg, #0002C4 -30%, #4886C9 100%);*/
     background-color: #0608C4;
     border: none;
     border-radius: 0.3vw;
@@ -124,7 +167,7 @@ body {
 }
 
 .btn-user-signup:hover {
-    box-shadow: 0 0.125vw 2.5vw rgba(146, 147, 255, 0.5);
+    box-shadow: 0 0.125rem 2.5rem rgba(146, 147, 255, 0.5);
     background-color: #4886C9;
 }
 
@@ -145,7 +188,6 @@ nav {
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    /*background: linear-gradient(90deg, #000276 0%, #0608C4 35%, #4886C9 80%, #62B6CB 100%);*/
     background-color: #090D18;
 }
 
@@ -162,11 +204,88 @@ nav {
     letter-spacing: 0.25em;
 }
 
+/*Menu Hamburguer*/
+.allmenu {
+    display: none;
+}
+
+.overlaymenu {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 15;
+}
+
+.logomenu {
+    width: 10vw;
+    height: auto;
+    margin: 2.5vw auto;
+    display: flex;
+    align-self: center;
+}
+
+.cancelmenu {
+    position: absolute;
+    top: 5%;
+    left: 28%;
+    background-color: #090D18;
+    border: none;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+}
+
 .btn-list {
     margin-left: 5vw;
     width: 2vw;
     height: auto;
     cursor: pointer;
+}
+
+menu {
+    width: 24%;
+    height: 100%;
+    background-color: #090D18;
+    color: #F8FBFF;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0.75vw;
+    z-index: 50;
+    overflow: scroll;
+    scrollbar-color: #F8FBFF #090D18;
+    scrollbar-width: thin;
+}
+
+.list {
+    color: #F8FBFF;
+    font-weight: 300;
+    list-style: none;
+    text-decoration: none;
+    margin: 0.65vw 0;
+}
+
+.list:hover {
+    text-decoration: underline;
+    text-decoration-color: #4886C9;
+    text-decoration-thickness: 0.15vw;
+}
+
+.title-list {
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.2vw;
+}
+
+hr {
+    opacity: 0.12;
+    margin: 2vw 0;
 }
 
 /*Formulario*/
@@ -551,8 +670,5 @@ div.column{
 nav{
     height: 10vw
 };
-
-
-
 
 }

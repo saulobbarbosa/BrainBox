@@ -10,6 +10,7 @@
     <script src="controllers/campoPesquisa.js" defer></script>
     <script src="controllers/veriLogin.js" defer></script>  
     <script src="controllers/controllerProduto.js" defer></script>
+    <script src="pagina-principal/menu.js" defer></script>
     <link rel="shortcut icon" type="imagex/png" href="produto1/assets/logo/minilogo-brainbox.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +40,42 @@
         <img src="pagina-principal/assets/img/svgs/basket-shopping.svg" class="btn-basket">
     </header>
     <nav>
-        <img src="produto1/assets/img/svgs/menu-icon.svg" class="btn-list">
+        <img src="pagina-principal/assets/img/svgs/menu-icon.svg" class="btn-list" id="btn_menu" onclick="abrirMenu()">
+        <div class="allmenu" id="menu">
+            <menu>
+                <img src="pagina-principal/assets/logo/brainbox-logoblack.svg" alt="Logo Brainbox" class="logomenu">
+                <ul>
+                    <li class="title-list">Destaques</li>
+                    <a href=""><li class="list">Mais Vendidos</li></a>
+                    <a href=""><li class="list">Novidades</li></a>
+                    <a href=""><li class="list">Ofertas do dia</li></a>
+                    <a href=""><li class="list">Semana Gamer</li></a>
+                    <hr>
+                    <li class="title-list">Produtos</li>
+                    <a href=""><li class="list">Computadores</li></a>
+                    <a href=""><li class="list">Tablets</li></a>
+                    <a href=""><li class="list">Celulares</li></a>
+                    <a href=""><li class="list">Áudio</li></a>
+                    <a href=""><li class="list">Projetores</li></a>
+                    <a href=""><li class="list">Mouses</li></a>
+                    <a href=""><li class="list">Teclados</li></a>
+                    <a href=""><li class="list">Monitores</li></a>
+                    <a href=""><li class="list">Escritório</li></a>
+                    <a href=""><li class="list">Hardwares</li></a>
+                    <a href=""><li class="list">Periféricos</li></a>
+                    <a href=""><li class="list">Robótica</li></a>
+                    <a href=""><li class="list">Acessórios</li></a>
+                    <hr>
+                    <li class="title-list">Ajuda e Configurações</li>
+                    <a href=""><li class="list">Sua Conta</li></a>
+                    <a href=""><li class="list">Entre em contato</li></a>
+                    <a href=""><li class="list">Ajuda</li></a>
+                    <a href=""><li class="list">Sair</li></a>
+                </ul>
+            </menu>
+            <button class="cancelmenu"><img src="pagina-principal/assets/img/svgs/x.svg" alt="Cancelar" class="x" id="cancel" onclick="fecharMenu()"></button>
+            <div class="overlaymenu"></div>
+        </div>
         <a href="index.html" class="categorias-menu">HOME</a>
         <a href="ofertas.html" class="categorias-menu">OFERTAS</a>
         <a href="" class="categorias-menu">MAIS VENDIDOS</a>
