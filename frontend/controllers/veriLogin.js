@@ -17,7 +17,7 @@ $(document).ready(function(){
                 if(dados.nome){
                     $('#veriLogin').empty();
                     const loginData = `
-                    <div>
+                    <div style='font-family: "Poppins", sans-serif;'>
                         <img src="pagina-principal/assets/img/svgs/user-icon.svg" class="btn-user">
                         ${dados.nome}
                     </div>
