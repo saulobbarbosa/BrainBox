@@ -26,7 +26,7 @@ $(document).ready(function(){
                     // Calcula o preço original (antes do desconto)
                     const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
                     const ofertaHtml = `
-                    <a href="#">
+                    <a href="produto1.html?id_produto=${produto.id_produtos}">
                         <article class="oferta">
                             <img src="pagina-ofertas/assets/img/${produto.id_produtos}.jpg" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
@@ -63,7 +63,7 @@ $(document).ready(function(){
                     // Calcula o preço original (antes do desconto)
                     const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
                     const ofertaHtml = `
-                    <a href="#">
+                    <a href="produto1.html?id_produto=${produto.id_produtos}">
                         <article class="oferta">
                             <img src="pagina-ofertas/assets/img/${produto.id_produtos}.jpg" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
