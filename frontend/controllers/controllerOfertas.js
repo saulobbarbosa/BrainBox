@@ -28,7 +28,7 @@ $(document).ready(function(){
                     const ofertaHtml = `
                     <a href="produto1.html?id_produto=${produto.id_produtos}">
                         <article class="oferta">
-                            <img src="pagina-ofertas/assets/img/${produto.id_produtos}.jpg" class="img-oferta img-oferta-${produto.id_produtos}">
+                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
                                 <h3 class="oferta-titulo">${produto.nome}</h3>
                                 <p class="preco-antes-oferta">R$ ${produto.preco}</p>
@@ -65,7 +65,7 @@ $(document).ready(function(){
                     const ofertaHtml = `
                     <a href="produto1.html?id_produto=${produto.id_produtos}">
                         <article class="oferta">
-                            <img src="pagina-ofertas/assets/img/${produto.id_produtos}.jpg" class="img-oferta img-oferta-${produto.id_produtos}">
+                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
                                 <h3 class="oferta-titulo">${produto.nome}</h3>
                                 <p class="preco-antes-oferta">R$ ${produto.preco}</p>

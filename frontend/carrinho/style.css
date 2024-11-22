@@ -1,0 +1,505 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8FBFF;
+    font-family: "Poppins", sans-serif;
+}
+
+/*Header Principal*/
+.header-principal {
+    background-color: #090D18;
+    width: 100%;
+    height: 5.5vw;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.brainbox-logo {
+    display: flex;
+    width: 15vw;
+    margin: 4vw;
+    cursor: pointer;
+}
+
+.logo-brainbox {
+    width: 3.4vw;
+    margin: auto 0.75vw;
+}
+
+.logotipo-brainbox {
+    width: 8.5vw;
+    height: auto;
+}
+
+/*Barra e Botão de Pesquisa*/
+.search {
+    display: flex;
+    margin: auto;
+}
+
+/*Barra de Pesquisa*/
+.search-bar {
+    background: none;
+    outline: none;
+    border: 0.03vw solid rgba(195, 221, 255, 0.2);
+    border-radius: 0.5vw 0 0 0.5vw;
+    width: 30vw;
+    height: 2vw;
+    color: rgba(248, 251, 255, 0.75);
+    font: 400 0.9vw "Poppins";
+    transition: all 0.5s;
+    margin-right: 0;
+    padding-left: 1.5vw;
+    padding-right: 0.5vw;
+}
+
+.search-bar::placeholder {
+    color: rgba(195, 221, 255, 0.5);
+    font: 400 0.9vw "Poppins";
+    margin: auto;
+}
+
+.search-bar:focus {
+    border-color: rgba(195, 221, 255, 0.8);
+}
+
+/*Botão de Pesquisa*/
+.search-btn {
+    width: 3.4vw;
+    height: 2vw;
+    background: linear-gradient(220deg, #0002C4 -40%, #62B6CB 100%);
+    border-width: 0.03vw 0;
+    border-style: solid;
+    border-color: rgba(195, 221, 255, 0.2);
+    border-radius: 0 0.3vw 0.3vw 0;
+    transition: all 0.2s;
+    margin-left: 0;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    box-shadow: 0 0.125vw 2.5vw rgba(146, 147, 255, 0.5);
+    background: linear-gradient(220deg, #0002C4 -20%, #4886C9 10%, #62B6CB 100%);
+}
+
+.search-icon {
+    width: 1.2vw;
+    height: auto;
+    margin: auto;
+}
+
+/*Botão de Usuário*/
+.btn-user-login {
+    width: 6vw;
+    height: 2vw;
+    color: #F8FBFF;
+    font: 400 1vw "Poppins";
+    margin: auto 0 auto auto;
+    background: none;
+    border: none;
+    border-radius: 0.3vw;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.btn-user-login:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/*Botão de Sair*/
+.btn-user-logout {
+    width: 6vw;
+    height: 2vw;
+    color: #F8FBFF;
+    font: 400 1vw "Poppins";
+    margin: auto 0 auto auto;
+    background: none;
+    border: none;
+    border-radius: 0.3vw;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.btn-user-logout:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/*Botão de Usuário*/
+.btn-user {
+    width: 2vw;
+    height: auto;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+#veriLogin {
+    height: 5.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#veriLogin div {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #F8FBFF;
+    font: 500 1vw "Poppins ";
+}
+
+/*Botão de Cadastro*/
+.btn-user-signup {
+    margin: auto 1.5vw auto 0;
+    transition: all 0.25s;
+    background-color: #0608C4;
+    border: none;
+    border-radius: 0.3vw;
+    width: 8vw;
+    height: 2vw;
+    color: #F8FBFF;
+    font: 500 1vw "Poppins";
+    cursor: pointer;
+}
+
+.btn-user-signup:hover {
+    box-shadow: 0 0.125rem 2.5rem rgba(146, 147, 255, 0.5);
+    background-color: #4886C9;
+}
+
+/*Botão de Compra*/
+.btn-basket {
+    width: 1.5vw;
+    height: auto;
+    margin: auto 5vw auto 0.5vw;
+    cursor: pointer;
+}
+
+/*Menu Principal*/
+nav {
+    height: 2.5vw;
+    width: 100%;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #090D18;
+}
+
+/*Categorias*/
+.categorias-menu {
+    margin-inline: 3vw;
+    color: #FFFFFF;
+    font: 400 1vw "Poppins";
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.categorias-menu:hover {
+    letter-spacing: 0.25em;
+}
+
+/*Menu Hamburguer*/
+.allmenu {
+    display: none;
+}
+
+.overlaymenu {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 15;
+}
+
+.logomenu {
+    width: 10vw;
+    height: auto;
+    margin: 2.5vw auto;
+    display: flex;
+    align-self: center;
+}
+
+.cancelmenu {
+    position: absolute;
+    top: 5%;
+    left: 28%;
+    background-color: #090D18;
+    border: none;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.btn-list {
+    margin-left: 5vw;
+    width: 2vw;
+    height: auto;
+    cursor: pointer;
+}
+
+menu {
+    width: 24%;
+    height: 100%;
+    background-color: #090D18;
+    color: #F8FBFF;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0.75vw;
+    z-index: 50;
+    overflow: scroll;
+    scrollbar-color: #F8FBFF #090D18;
+    scrollbar-width: thin;
+}
+
+.list {
+    color: #F8FBFF;
+    font-weight: 300;
+    list-style: none;
+    text-decoration: none;
+    margin: 0.65vw 0;
+}
+
+.list:hover {
+    text-decoration: underline;
+    text-decoration-color: #4886C9;
+    text-decoration-thickness: 0.15vw;
+}
+
+.title-list {
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.2vw;
+}
+
+hr {
+    opacity: 0.12;
+    margin: 2vw 0;
+}
+
+/*Carrinho - Produtos*/
+main {
+    display: grid;
+    grid-template-areas:
+        "carrinho carrinho preco"
+        "carrinho carrinho recomendados"
+        "carrinho carrinho .";
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    gap: 2vw;
+}
+
+.com-prod {
+    display: block;
+}
+
+.sem-prod {
+    display: none;
+}
+
+.sem-prod-titulo {
+    font: 700 2.4vw "Kode Mono";
+    color: dimgrey;
+    text-align: center;
+}
+
+.carrinho,
+.totalpreco,
+.prod-recomendados {
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(172, 173, 255, 0.25);
+    border-radius: 0.4vw;
+    padding: 1.5vw;
+}
+
+.box-produto,
+.prod-rec {
+    background-color: #FFFFFF;
+    border: 0.02vw solid rgba(9, 13, 24, 0.25);
+    border-radius: 0.3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.carrinho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-start;
+    margin-left: 2vw;
+    grid-area: carrinho;
+}
+
+.h1-titulo {
+    font: 700 2.5vw "Poppins";
+    color: #090D18;
+    margin: 0;
+}
+
+.desmarcartodos,
+.continuar {
+    font: 600 1vw "Poppins";
+    text-transform: uppercase;
+    color: #0002C4;
+    background: none;
+    border: none;
+}
+
+.desmarcartodos {
+    margin-bottom: 1vw;
+}
+
+.desmarcartodos:hover,
+.continuar:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12vw;
+}
+
+/*Produto*/
+.box-produto {
+    margin-top: 1vw;
+    padding: 1vw 8vw;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 1.5vw;
+    height: 1.5vw;
+    border: 0.12vw solid #0608C4;
+    border-radius: 0.2vw;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #0608C4;
+}
+
+input[type="checkbox"]::after {
+    content: '\2713';
+    color: #F8FBFF;
+    font-size: 1vw;
+}
+
+.img-produto {
+    margin-inline: 4vw;
+}
+
+.img-produto,
+.img-prod-rec {
+    width: 10vw;
+    height: 10vw;
+}
+
+.nome-produto {
+    font-size: 1vw;
+    color: #090D18;
+    width: 15vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+.preco-produto {
+    font: 700 1.4vw "Poppins";
+    color: #0608C4;
+    margin-bottom: 0.5vw;
+}
+
+.btn-prod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1vw;
+    padding: 0.5vw 2vw;
+    border: 0.12vw solid #0002C4;
+    border-radius: 0.3vw;
+}
+
+.delete-prod,
+.aumentar-prod {
+    all: unset;
+    width: 1vw;
+    height: 1vw;
+    cursor: pointer;
+}
+
+.num-prod {
+    font-size: 1vw;
+}
+
+/*Preço Total*/
+.totalpreco {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+    grid-area: preco;
+}
+
+.preco {
+    font: 700 1.5vw "Poppins";
+    color: #090D18;
+}
+
+.finalizarcompra,
+.btn-comprar {
+    width: 14vw;
+    height: 2.4vw;
+    background-color: #0608C4;
+    color: #F8FBFF;
+    font: 500 1vw "Poppins";
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.3vw;
+    transition: all 0.2s;
+}
+
+.finalizarcompra {
+    margin: 1vw;
+}
+
+.finalizarcompra:hover,
+.btn-comprar:hover {
+    background-color: #000276;
+}
+
+/*Produtos Recomendados*/
+.prod-recomendados {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 2vw;
+    grid-area: recomendados;
+}
+
+.prod-rec {
+    padding: 1vw 0.5vw;
+    margin-bottom: 1vw;
+}
+
+.grid-rec {
+    display: flex;
+    flex-direction: column;
+}
+
+.recomendacao-titulo {
+    text-align: center;
+    font: 700 1.5vw "Poppins";
+}

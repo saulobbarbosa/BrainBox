@@ -40,7 +40,7 @@ $(document).ready(function(){
 
                     // Cria a nova div com todas as informações do produto, incluindo a descrição formatada
                     const produtoHtml = `
-                        <img src="pagina-ofertas/assets/img/${produto.id_produtos}.jpg" alt="produto1" class="img-produto">
+                        <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
                         <div id="dados-produto">
                             <h1 class="titulo-produto">${produto.nome}</h1>
                             <p class="preco-antes-oferta">R$ ${produto.preco.toFixed(2)}</p>
