@@ -1,7 +1,8 @@
 $(document).ready(function(){
     const backend = '../backend/login.php';
-
+    
     verifica();
+    let taLogado;
 
     function verifica(){
         let dados = {
@@ -25,8 +26,10 @@ $(document).ready(function(){
                     `;
 
                     $('#veriLogin').append(loginData);
+                    taLogado = true;
+                }else{
+                    taLogado = false;
                 }
-                
             }
         });
     }
@@ -42,12 +45,27 @@ $(document).ready(function(){
             data: dados,
             url: backend,
             success: function(dados){
-                location.reload()
+                let minhaLocation = window.location.href;
+                let eCarrinho = minhaLocation.includes('carrinho.html');
+                if(eCarrinho){
+                    window.location = 'index.html';
+                }else{
+                    alert(window.location);
+                    location.reload()
+                }
             }
         });
     }
 
-    $(document).on("click", '.btn-user-logout', {'param': 10}, function(e){
+    $(document).on("click", '.btn-basket', function(e){
+        if(!taLogado){
+            alert('Faça Login!');
+        }else{
+            window.location = 'carrinho.html';
+        }
+    });
+
+    $(document).on("click", '.btn-user-logout', function(e){
         sair();
     });
 

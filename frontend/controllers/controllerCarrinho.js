@@ -1,6 +1,4 @@
-$(document).ready(function(){
-    const backend = '../backend/models/produtosModel.php';
 
-    
-    
+$(document).on("click", '.btn-comprar-produto', function(){
+    alert("teste");
 });
