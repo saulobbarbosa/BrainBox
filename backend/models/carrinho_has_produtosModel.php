@@ -1,8 +1,9 @@
 <?php
+session_start();
 include('../connection/conn.php');
 
 if ($_POST['operacao'] == 'create') {
-    if (empty($_POST['id_carrinho']) || empty($_POST['id_produtos']) || empty($_POST['quantidade'])) {
+    if (empty($_SESSION['id_carrinho']) || empty($_POST['id_produtos']) || empty($_POST['quantidade'])) {
         $result = array(
             'type' => 'error',
             'message' => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
@@ -13,7 +14,7 @@ if ($_POST['operacao'] == 'create') {
             $sql = "INSERT INTO lojatcc.carrinho_has_produtos(id_carrinho, id_produtos, quantidade) VALUES (?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
-                $_POST['id_carrinho'],
+                $_SESSION['id_carrinho'],
                 $_POST['id_produtos'],
                 $_POST['quantidade']
             ]);
@@ -45,7 +46,7 @@ if ($_POST['operacao'] == 'read') {
 }
 
 if ($_POST['operacao'] == 'update') {
-    if (empty($_POST['id_carrinho']) || empty($_POST['id_produtos']) || empty($_POST['quantidade'])) {
+    if (empty($_SESSION['id_carrinho']) || empty($_POST['id_produtos']) || empty($_POST['quantidade'])) {
         $result = array(
             'type' => 'error',
             'message' => 'Existe(m) campo(s) obrigatório(s) não preenchido(s).'
@@ -57,7 +58,7 @@ if ($_POST['operacao'] == 'update') {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 $_POST['quantidade'],
-                $_POST['id_carrinho'],
+                $_SESSION['id_carrinho'],
                 $_POST['id_produtos']
             ]);
             $result = array(
@@ -79,7 +80,7 @@ if ($_POST['operacao'] == 'delete') {
     try {
         $sql = "DELETE FROM lojatcc.carrinho_has_produtos WHERE id_carrinho = ? AND id_produtos = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$_POST['id_carrinho'], $_POST['id_produtos']]);
+        $stmt->execute([$_SESSION['id_carrinho'], $_POST['id_produtos']]);
         $dados = array(
             'type' => 'success',
             'message' => 'Registro excluído com sucesso!'

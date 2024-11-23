@@ -22,6 +22,7 @@ if ($_POST['operacao'] == 'login') {
             // Iniciar a sessão se o usuário for encontrado
             $_SESSION['user_id'] = $user['cpf'];
             $_SESSION['user_name'] = $user['nome'];
+            $_SESSION['id_carrinho'] = $user['id_carrinho'];
             echo json_encode(array('type' => 'success', 'message' => 'Login realizado com sucesso.'));
         } else {
             echo json_encode(array('type' => 'error', 'message' => 'Credenciais inválidas.'));
@@ -33,7 +34,7 @@ if ($_POST['operacao'] == 'login') {
 
 if($_POST['operacao'] == 'verifica'){
     if(isset($_SESSION['user_id'])){
-        echo json_encode(array('id' => $_SESSION['user_id'], 'nome' => $_SESSION['user_name']));
+        echo json_encode(array('nome' => $_SESSION['user_name']));
     }else{
         echo json_encode(array('type' => 'error', 'message' => 'Não logado'));
     }

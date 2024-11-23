@@ -45,7 +45,7 @@ $(document).ready(function(){
                             <h1 class="titulo-produto">${produto.nome}</h1>
                             <p class="preco-antes-oferta">R$ ${produto.preco.toFixed(2)}</p>
                             <p class="preco-produto">R$ ${precoDesconto.toFixed(2)}</p>
-                            <button class="btn-comprar-produto">Comprar</button>
+                            <button class="btn-comprar-produto" value="${produto.id_produtos}">Comprar</button>
                             <hr class="breakline">
                             <h3 class="info-produto-titulo">informações técnicas</h3>
                             <ul class="info-produto">

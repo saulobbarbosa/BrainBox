@@ -69,4 +69,12 @@ $(document).ready(function(){
         sair();
     });
 
+    $(document).on("click", '.btn-comprar-produto', function(e){
+        if(!taLogado){
+            window.location = 'login.html';
+        }else{
+            alert("Produto adicionado no carrinho!");
+        }
+    });
+
 });
