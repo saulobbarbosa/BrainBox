@@ -34,7 +34,7 @@ if ($_POST['operacao'] == 'create') {
 }
 
 if ($_POST['operacao'] == 'read') {
-    $sql = "SELECT * FROM carrinho_has_produtos";
+    $sql = "SELECT * FROM vw_carrinho_produtos";
     $resultado = $pdo->query($sql);
     $carrinho_has_produtos = array();
 
