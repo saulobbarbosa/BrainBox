@@ -374,24 +374,38 @@ main {
     padding: 1vw 8vw;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    width: 1.5vw;
-    height: 1.5vw;
-    border: 0.12vw solid #0608C4;
-    border-radius: 0.2vw;
-    transition: all 0.1s;
+input[type=checkbox]{
+    position: relative;
     cursor: pointer;
 }
 
-input[type="checkbox"]:checked {
-    background-color: #0608C4;
+input[type=checkbox]:before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1.5vw;
+    height: 1.5vw;
+    top: 0;
+    left: 0;
+    background-color: #F8FBFF;
+    border: 0.12vw solid #0608C4;
+    border-radius: 0.2vw;
+    transition: all 0.1s;
 }
 
-input[type="checkbox"]::after {
-    content: '\2713';
-    color: #F8FBFF;
-    font-size: 1vw;
+input[type=checkbox]:checked:after{
+    content: "";
+    display: block;
+    width: 0.5vw;
+    height: 1vw;
+    border: solid #0608C4;
+    border-width: 0 0.2vw 0.2vw 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0.2vw;
+    left: 0.55vw;
 }
 
 .img-produto {
