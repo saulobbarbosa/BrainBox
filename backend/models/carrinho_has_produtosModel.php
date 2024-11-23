@@ -11,7 +11,7 @@ if ($_POST['operacao'] == 'create') {
         echo json_encode($result);
     } else {
         try {
-            $sql = "INSERT INTO lojatcc.carrinho_has_produtos(id_carrinho, id_produtos, quantidade) VALUES (?, ?, ?)";
+            $sql = "CALL sp_add_to_carrinho (?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 $_SESSION['id_carrinho'],
