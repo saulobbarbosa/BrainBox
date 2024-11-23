@@ -59,7 +59,7 @@ $(document).ready(function(){
 
     $(document).on("click", '.btn-basket', function(e){
         if(!taLogado){
-            alert('Faça Login!');
+            window.location = 'login.html';
         }else{
             window.location = 'carrinho.html';
         }
