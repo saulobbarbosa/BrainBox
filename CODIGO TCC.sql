@@ -1,12 +1,3 @@
-drop database lojatcc;
-
-
-create database lojatcc;
-
-
-use lojatcc;
-
-
 CREATE TABLE lojatcc.carrinho(
 	id_carrinho INT NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY(id_carrinho)
@@ -76,16 +67,6 @@ CREATE TABLE lojatcc.historico (
     cpf BIGINT NOT NULL,
     id_produtos INT NOT NULL,
     data_vis TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (cpf, id_produtos),
     CONSTRAINT fk_his_usuario FOREIGN KEY (cpf) REFERENCES usuario(cpf),
     CONSTRAINT fk_his_produtos FOREIGN KEY (id_produtos) REFERENCES produtos(id_produtos)
 );
-
-SELECT * from lojatcc.usuario;
-
-
-
-
-
-
-

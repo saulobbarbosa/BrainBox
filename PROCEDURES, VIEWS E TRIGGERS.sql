@@ -62,3 +62,16 @@ FROM
 ORDER BY 
     oferta DESC
 LIMIT 5;
+
+-- View para ver os dados dos produtos em histórico
+CREATE OR REPLACE VIEW lojatcc.view_historico_produtos AS
+SELECT 
+    h.cpf,
+    h.id_produtos,
+    p.arquivo_img
+FROM 
+    lojatcc.historico h
+JOIN 
+    lojatcc.produtos p
+ON 
+    h.id_produtos = p.id_produtos;

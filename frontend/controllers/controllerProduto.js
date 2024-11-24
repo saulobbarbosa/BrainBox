@@ -1,42 +1,59 @@
-$(document).ready(function(){
-    const backend = '../backend/models/produtosModel.php';
-    
+$(document).ready(function () {
     buscar1();
+});
 
-    function pegarParametroURL(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
+function cadastrarHistorico() {
+    let dados = {
+        operacao: "create",
+        id_produto: pegarParametroURL('id_produto')
+    };
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        assync: true,
+        data: dados,
+        url: '../backend/models/historicoModel.php',
+        success: function (dados) {
+            console.log(dados);
+        }
+    });
+}
 
-    function trocarPontoPorVirgula(texto) {
-        return texto.toString().replace(/\./g, ',');
-    }
+function pegarParametroURL(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
 
-    function buscar1(){
-        let dados = {
-            operacao: "buscar1",
-            id_produtos: pegarParametroURL('id_produto')
-        };
-        $.ajax({
-            type: 'POST',
-            dataType: 'JSON',
-            assync: true,
-            data: dados,
-            url: backend,
-            success: function(dados){
-                if (dados.length > 0) {
-                    let produto = dados[0];
-                    if(produto.oferta == "0"){         
-                        $('.produto').empty();
+function trocarPontoPorVirgula(texto) {
+    return texto.toString().replace(/\./g, ',');
+}
 
-                        const descricaoLinhas = produto.descricao.split('\n');
+function buscar1() {
+    let dados = {
+        operacao: "buscar1",
+        id_produtos: pegarParametroURL('id_produto')
+    };
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        assync: true,
+        data: dados,
+        url: backend,
+        success: function (dados) {
+            cadastrarHistorico();
+            if (dados.length > 0) {
+                let produto = dados[0];
+                if (produto.oferta == "0") {
+                    $('.produto').empty();
 
-                        let descricaoHtml = '';
-                        descricaoLinhas.forEach(function(linha) {
-                            descricaoHtml += `<li>${linha}</li>`;
-                        });
+                    const descricaoLinhas = produto.descricao.split('\n');
 
-                        const produtoHtml = `
+                    let descricaoHtml = '';
+                    descricaoLinhas.forEach(function (linha) {
+                        descricaoHtml += `<li>${linha}</li>`;
+                    });
+
+                    const produtoHtml = `
                             <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
                             <div id="dados-produto">
                                 <h1 class="titulo-produto">${produto.nome}</h1>
@@ -50,20 +67,20 @@ $(document).ready(function(){
                                 </ul>
                             </div>
                         `;
-                        
-                        $('.produto').append(produtoHtml);
-                    }else{
-                        $('.produto').empty();
 
-                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
-                        const descricaoLinhas = produto.descricao.split('\n');
+                    $('.produto').append(produtoHtml);
+                } else {
+                    $('.produto').empty();
 
-                        let descricaoHtml = '';
-                        descricaoLinhas.forEach(function(linha) {
-                            descricaoHtml += `<li>${linha}</li>`;
-                        });
+                    const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                    const descricaoLinhas = produto.descricao.split('\n');
 
-                        const produtoHtml = `
+                    let descricaoHtml = '';
+                    descricaoLinhas.forEach(function (linha) {
+                        descricaoHtml += `<li>${linha}</li>`;
+                    });
+
+                    const produtoHtml = `
                             <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
                             <div id="dados-produto">
                                 <h1 class="titulo-produto">${produto.nome}</h1>
@@ -77,16 +94,15 @@ $(document).ready(function(){
                                 </ul>
                             </div>
                         `;
-                        
-                        $('.produto').append(produtoHtml);
-                    }
-                } else {
-                    console.log("Nenhum produto encontrado.");
+
+                    $('.produto').append(produtoHtml);
                 }
-            },
-            error: function(err) {
-                console.log("Erro na requisição: ", err);
+            } else {
+                console.log("Nenhum produto encontrado.");
             }
-        });
-    }
-});
+        },
+        error: function (err) {
+            console.log("Erro na requisição: ", err);
+        }
+    });
+}
