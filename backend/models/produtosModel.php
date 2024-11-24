@@ -132,3 +132,15 @@ if ($_POST['operacao'] == 'buscar1') {
 
     echo json_encode($produtos);
 }
+
+if ($_POST['operacao'] == 'oferta') {
+    $sql = "SELECT * FROM top5_ofertas";
+    $resultado = $pdo->query($sql);
+    $produtos = array();
+
+    while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $produtos[] = $row;
+    }
+
+    echo json_encode($produtos);
+}

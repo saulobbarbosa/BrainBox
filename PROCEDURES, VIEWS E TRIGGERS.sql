@@ -44,3 +44,21 @@ JOIN
     lojatcc.produtos AS p
 ON 
     chp.id_produtos = p.id_produtos;
+
+
+-- View para ver os 5 primeiros produtos com as maiores ofertas
+CREATE VIEW lojatcc.top5_ofertas AS
+SELECT 
+    id_produtos,
+    nome,
+    descricao,
+    preco,
+    oferta,
+    quantidade_estoque,
+    marca,
+    arquivo_img
+FROM 
+    lojatcc.produtos
+ORDER BY 
+    oferta DESC
+LIMIT 5;
