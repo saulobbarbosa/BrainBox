@@ -8,6 +8,10 @@ $(document).ready(function(){
         pesquisa(nome_produto);
     }
 
+    function trocarPontoPorVirgula(texto) {
+        return texto.toString().replace(/\./g, ',');
+    }
+
     function read(){
         let dados = {
             operacao: "read"
@@ -31,7 +35,7 @@ $(document).ready(function(){
                             <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
                                 <h3 class="oferta-titulo">${produto.nome}</h3>
-                                <p class="preco-antes-oferta">R$ ${produto.preco}</p>
+                                <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
                                 <p class="preco-oferta">R$ ${precoDesconto.toFixed(2)}</p>
                             </div>
                             <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
@@ -68,8 +72,8 @@ $(document).ready(function(){
                             <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                             <div>
                                 <h3 class="oferta-titulo">${produto.nome}</h3>
-                                <p class="preco-antes-oferta">R$ ${produto.preco}</p>
-                                <p class="preco-oferta">R$ ${precoDesconto.toFixed(2)}</p>
+                                <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
                             </div>
                             <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
                         </article>

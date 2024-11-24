@@ -50,7 +50,6 @@ $(document).ready(function(){
                 if(eCarrinho){
                     window.location = 'index.html';
                 }else{
-                    alert(window.location);
                     location.reload()
                 }
             }

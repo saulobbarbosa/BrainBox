@@ -8,6 +8,10 @@ $(document).ready(function(){
         return urlParams.get(name);
     }
 
+    function trocarPontoPorVirgula(texto) {
+        return texto.toString().replace(/\./g, ',');
+    }
+
     function buscar1(){
         let dados = {
             operacao: "buscar1",
@@ -43,8 +47,8 @@ $(document).ready(function(){
                         <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
                         <div id="dados-produto">
                             <h1 class="titulo-produto">${produto.nome}</h1>
-                            <p class="preco-antes-oferta">R$ ${produto.preco.toFixed(2)}</p>
-                            <p class="preco-produto">R$ ${precoDesconto.toFixed(2)}</p>
+                            <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco.toFixed(2))}</p>
+                            <p class="preco-produto">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
                             <button class="btn-comprar-produto" value="${produto.id_produtos}">Comprar</button>
                             <hr class="breakline">
                             <h3 class="info-produto-titulo">informações técnicas</h3>

@@ -13,12 +13,13 @@ if ($_POST['operacao'] == 'create') {
         try {
             $produtos = json_decode($_POST['produtos'], true); // Decodificar JSON de produtos
             foreach ($produtos as $produto) {
-                $sql = "INSERT INTO lojatcc.compras (quantidade, id_produtos, cpf_usuario) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO lojatcc.compras (quantidade, id_produtos, cpf_usuario, data_compra) VALUES (?, ?, ?, ?)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([
                     $produto['quantidade'],
                     $produto['id_produto'],
-                    $_SESSION['user_id']
+                    $_SESSION['user_id'],
+                    date("Y-m-d")
                 ]);
             }
             $result = array(
