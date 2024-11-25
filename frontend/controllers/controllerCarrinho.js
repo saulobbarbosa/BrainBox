@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function () {
     read();
 });
 
 // Função para calcular o total com base nos checkboxes marcados e quantidades
 function calcularTotal() {
     let total = 0;
-    $('.checkbox-produto:checked').each(function() {
+    $('.checkbox-produto:checked').each(function () {
         // Obtém o preço do produto
         const preco = parseFloat($(this).val());
         // Obtém a quantidade do produto associado
@@ -23,22 +23,22 @@ function trocarPontoPorVirgula(texto) {
     return texto.toString().replace(/\./g, ',');
 }
 
-$(document).on('change', '.checkbox-produto', function() {
+$(document).on('change', '.checkbox-produto', function () {
     calcularTotal();
 });
 
-function desmarcarTodos(){
+function desmarcarTodos() {
     $(".checkbox-produto").prop("checked", false);
     calcularTotal();
 }
 
-$(document).on("click", ".desmarcartodos", function() {
+$(document).on("click", ".desmarcartodos", function () {
     $(".checkbox-produto").prop("checked", false);
     calcularTotal();
 });
 
 
-$(document).on("click", '.btn-comprar-produto', function(){
+$(document).on("click", '.btn-comprar-produto', function () {
     let id_produtos = $('.btn-comprar-produto').val();
     let dados = {
         operacao: "create",
@@ -51,13 +51,22 @@ $(document).on("click", '.btn-comprar-produto', function(){
         assync: true,
         data: dados,
         url: '../backend/models/carrinho_has_produtosModel.php',
-        success: function(dados){
-            console.log(dados);
+        success: function (dados) {
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Seu produto foi adicionado ao carrinho",
+                icon: "success",
+                customClass: {
+                    title: 'swal2-title',
+                    htmlContainer: 'swal2-content',
+                    confirmButton: 'swal2-confirm'
+                }
+            });
         }
     });
 });
 
-$(document).on("click", '.aumentar-prod', function(){
+$(document).on("click", '.aumentar-prod', function () {
     let id_produto = $(this).attr('id');
     let dados = {
         operacao: "adicionar",
@@ -69,14 +78,14 @@ $(document).on("click", '.aumentar-prod', function(){
         assync: true,
         data: dados,
         url: '../backend/models/carrinho_has_produtosModel.php',
-        success: function(dados){
+        success: function (dados) {
             read();
             desmarcarTodos();
         }
     });
 });
 
-$(document).on("click", '.delete-prod', function(){
+$(document).on("click", '.delete-prod', function () {
     let id_produto = $(this).attr('id');
     let dados = {
         operacao: "diminuir",
@@ -88,7 +97,7 @@ $(document).on("click", '.delete-prod', function(){
         assync: true,
         data: dados,
         url: '../backend/models/carrinho_has_produtosModel.php',
-        success: function(dados){
+        success: function (dados) {
             read();
             desmarcarTodos();
         }
@@ -105,7 +114,7 @@ function read() {
         assync: true,
         data: dados,
         url: '../backend/models/carrinho_has_produtosModel.php',
-        success: function(dados) {
+        success: function (dados) {
             $('.carrinho').empty();
             if (dados == "") {
                 const dadosAntes = `
@@ -129,7 +138,7 @@ function read() {
                     </div>
                 `;
                 $('.carrinho').append(dadosAntes);
-                dados.forEach(function(produto) {
+                dados.forEach(function (produto) {
                     const produtoHtml = `
                     <article class="box-produto">
                         <input type="checkbox" name="produto" class="checkbox-produto" value="${produto.preco_com_desconto}">
@@ -155,6 +164,10 @@ function read() {
 }
 
 $(document).on("click", ".finalizarcompra", function () {
+    comprar()
+});
+
+function comprar() {
     // Obter produtos marcados
     let produtosSelecionados = [];
     $('.checkbox-produto:checked').each(function () {
@@ -164,51 +177,122 @@ $(document).on("click", ".finalizarcompra", function () {
     });
 
     if (produtosSelecionados.length === 0) {
-        alert("Selecione ao menos um produto para finalizar a compra.");
+        Swal.fire({
+            title: "Aviso",
+            text: "Selecione ao menos um produto para finalizar a compra",
+            icon: "warning",
+            customClass: {
+                title: 'swal2-title',
+                htmlContainer: 'swal2-content',
+                confirmButton: 'swal2-confirm'
+            }
+        });
         return;
     }
 
-    // Enviar produtos para criar a compra
-    $.ajax({
-        type: "POST",
-        url: "../backend/models/comprasModel.php",
-        data: {
-            operacao: "create",
-            produtos: JSON.stringify(produtosSelecionados), // Envia como JSON
-        },
-        dataType: "JSON",
-        success: function (response) {
-            desmarcarTodos();
-            if (response.type === "success") {
-                // Após criar a compra, deletar produtos específicos do carrinho
-                const idsCadastrados = produtosSelecionados.map(p => p.id_produto); // IDs cadastrados
-                $.ajax({
-                    type: "POST",
-                    url: "../backend/models/carrinho_has_produtosModel.php",
-                    data: {
-                        operacao: "deleteByIds",
-                        ids: JSON.stringify(idsCadastrados), // Enviar IDs como JSON
-                    },
-                    dataType: "JSON",
-                    success: function (res) {
-                        if (res.type === "success") {
-                            alert("Compra finalizada com sucesso!");
-                            read(); // Atualiza o carrinho
-                        } else {
-                            alert("Erro ao limpar os produtos do carrinho: " + res.message);
+    Swal.fire({
+        title: "Deseja adquirir este produto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#0002C4",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, desejo adquirir",
+        cancelButtonText: "Cancelar",
+        customClass: {
+            title: 'swal2-title',
+            htmlContainer: 'swal2-content',
+            confirmButton: 'swal2-confirm',
+            cancelButton: 'swal2-cancel'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Enviar produtos para criar a compra
+            $.ajax({
+                type: "POST",
+                url: "../backend/models/comprasModel.php",
+                data: {
+                    operacao: "create",
+                    produtos: JSON.stringify(produtosSelecionados), // Envia como JSON
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    desmarcarTodos();
+                    if (response.type === "success") {
+                        // Após criar a compra, deletar produtos específicos do carrinho
+                        const idsCadastrados = produtosSelecionados.map(p => p.id_produto); // IDs cadastrados
+                        $.ajax({
+                            type: "POST",
+                            url: "../backend/models/carrinho_has_produtosModel.php",
+                            data: {
+                                operacao: "deleteByIds",
+                                ids: JSON.stringify(idsCadastrados), // Enviar IDs como JSON
+                            },
+                            dataType: "JSON",
+                            success: function (res) {
+                                if (res.type === "success") {
+                                    Swal.fire({
+                                        title: "Sucesso!",
+                                        text: "Seu produto foi adquirido",
+                                        icon: "success",
+                                        customClass: {
+                                            title: 'swal2-title',
+                                            htmlContainer: 'swal2-content',
+                                            confirmButton: 'swal2-confirm'
+                                        }
+                                    });
+                                    read(); // Atualiza o carrinho
+                                } else {
+                                    Swal.fire({
+                                        title: "Erro!",
+                                        text: "Erro ao limpar os produtos do carrinho: " + res.message,
+                                        icon: "error",
+                                        customClass: {
+                                            title: 'swal2-title',
+                                            htmlContainer: 'swal2-content',
+                                            confirmButton: 'swal2-confirm'
+                                        }
+                                    });
+                                }
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    title: "Erro!",
+                                    text: "Erro ao tentar limpar os produtos do carrinho.",
+                                    icon: "error",
+                                    customClass: {
+                                        title: 'swal2-title',
+                                        htmlContainer: 'swal2-content',
+                                        confirmButton: 'swal2-confirm'
+                                    }
+                                });
+                            },
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: "Erro ao finalizar compra: " + response.message,
+                            icon: "error",
+                            customClass: {
+                                title: 'swal2-title',
+                                htmlContainer: 'swal2-content',
+                                confirmButton: 'swal2-confirm'
+                            }
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Erro ao tentar finalizar compra.",
+                        icon: "error",
+                        customClass: {
+                            title: 'swal2-title',
+                            htmlContainer: 'swal2-content',
+                            confirmButton: 'swal2-confirm'
                         }
-                    },
-                    error: function () {
-                        alert("Erro ao tentar limpar os produtos do carrinho.");
-                    },
-                });
-            } else {
-                alert("Erro ao finalizar compra: " + response.message);
-            }
-        },
-        error: function () {
-            alert("Erro ao tentar finalizar compra.");
-        },
+                    });
+                },
+            });
+        }
     });
-});
-
+}
