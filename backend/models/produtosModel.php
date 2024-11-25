@@ -159,6 +159,19 @@ if ($_POST['operacao'] == 'buscarMarca') {
     echo json_encode($produtos);
 }
 
+if ($_POST['operacao'] == 'maisVendidos') {
+    $sql = "select * from view_detalhes_quantidade_vendida";
+    $resultado = $pdo->query($sql);
+    $produtos = array();
+
+    while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $produtos[] = $row;
+    }
+
+    echo json_encode($produtos);
+}
+
+
 if ($_POST['operacao'] == 'oferta') {
     $sql = "SELECT * FROM top5_ofertas";
     $resultado = $pdo->query($sql);

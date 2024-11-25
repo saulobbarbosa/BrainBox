@@ -97,3 +97,20 @@ JOIN
     lojatcc.categoria c
 ON 
     p.id_categoria = c.id_categoria;
+
+
+-- Ordenar pela quantidade de venda
+CREATE VIEW lojatcc.view_detalhes_quantidade_vendida AS
+SELECT
+    p.*,
+    SUM(c.quantidade) AS total_vendido
+FROM
+    lojatcc.produtos p
+JOIN
+    lojatcc.compras c
+ON
+    p.id_produtos = c.id_produtos
+GROUP BY
+    p.id_produtos
+ORDER BY
+    total_vendido DESC;
