@@ -28,6 +28,8 @@ function trocarPontoPorVirgula(texto) {
     return texto.toString().replace(/\./g, ',');
 }
 
+
+
 function buscar1() {
     let dados = {
         operacao: "buscar1",
@@ -97,12 +99,46 @@ function buscar1() {
 
                     $('.produto').append(produtoHtml);
                 }
+                readRelacionados(produto.id_categoria);
             } else {
                 console.log("Nenhum produto encontrado.");
             }
         },
         error: function (err) {
             console.log("Erro na requisição: ", err);
+        }
+    });
+}
+
+function readRelacionados(categoria){
+    let dados = {
+        operacao: "buscarRelacionados",
+        id_categoria: categoria
+    };
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        assync: true,
+        data: dados,
+        url: backend,
+        success: function(dados){
+            $('.produtos-relacionados').empty();
+            dados.forEach(function(produto) {
+                    const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
+                    const relacionadosHtml = `
+                    <a href="produto1.html?id_produto=${produto.id_produtos}">
+                        <article class="prod-r">
+                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-prod-r">
+                            <div>
+                                <h3 class="prod-r-titulo">${produto.nome}</h3>
+                                <p class="preco-prod-r">R$ ${precoDesconto.toFixed(2)}</p>
+                            </div>
+                            <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
+                        </article>
+                    </a>
+                    `;
+                    $('.produtos-relacionados').append(relacionadosHtml);
+            });
         }
     });
 }

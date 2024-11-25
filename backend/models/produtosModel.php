@@ -160,7 +160,7 @@ if ($_POST['operacao'] == 'buscarMarca') {
 }
 
 if ($_POST['operacao'] == 'maisVendidos') {
-    $sql = "select * from view_detalhes_quantidade_vendida";
+    $sql = "SELECT * FROM view_detalhes_quantidade_vendida";
     $resultado = $pdo->query($sql);
     $produtos = array();
 
@@ -169,6 +169,16 @@ if ($_POST['operacao'] == 'maisVendidos') {
     }
 
     echo json_encode($produtos);
+}
+
+if ($_POST['operacao'] == 'buscarRelacionados') {
+    $id_categoria = $_POST['id_categoria']; 
+        $sql = "SELECT * FROM produtos WHERE id_categoria = ? LIMIT 5";
+        $stmt = $pdo->prepare($sql); 
+        $stmt->execute([$id_categoria]); 
+
+        $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        echo json_encode($produtos); 
 }
 
 
