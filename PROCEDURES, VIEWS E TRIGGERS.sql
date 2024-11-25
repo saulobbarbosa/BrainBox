@@ -75,3 +75,25 @@ JOIN
     lojatcc.produtos p
 ON 
     h.id_produtos = p.id_produtos;
+    
+
+-- Pesquisar produtos pela categoria
+CREATE VIEW lojatcc.view_produtos_por_categoria AS
+SELECT 
+    p.id_produtos,
+    p.nome AS nome_produto,
+    p.descricao,
+    p.preco,
+    p.custo,
+    p.oferta,
+    p.quantidade_estoque,
+    p.marca,
+    p.arquivo_img,
+    c.id_categoria,
+    c.tipo AS nome_categoria
+FROM 
+    lojatcc.produtos p
+JOIN 
+    lojatcc.categoria c
+ON 
+    p.id_categoria = c.id_categoria;

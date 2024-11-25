@@ -2,8 +2,13 @@ $(document).ready(function(){
     const backend = '../backend/models/produtosModel.php';
     
     const nome_produto = pegarParametroURL('n_produto');
+    const nome_categoria = pegarParametroURL('n_categoria');
     if(nome_produto == null){
-       read(); 
+        if(nome_categoria != null){
+            readCategoria(nome_categoria)
+        }else{
+            read()
+        }
     }else{
         pesquisa(nome_produto);
     }
@@ -33,7 +38,7 @@ $(document).ready(function(){
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
-                                    <p class="preco-oferta">R$ ${produto.preco}</p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
                                 </div>
                                 <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
                             </article>
@@ -50,7 +55,7 @@ $(document).ready(function(){
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
-                                    <p class="preco-oferta">R$ ${precoDesconto.toFixed(2)}</p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
                                 </div>
                                 <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
                             </article>
@@ -85,7 +90,7 @@ $(document).ready(function(){
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
-                                    <p class="preco-oferta">R$ ${produto.preco}</p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
                                 </div>
                                 <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
                             </article>
@@ -102,7 +107,59 @@ $(document).ready(function(){
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
-                                    <p class="preco-oferta">R$ ${precoDesconto.toFixed(2)}</p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                </div>
+                                <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
+                            </article>
+                        </a>
+                        `;
+                        $('.ofertas').append(ofertaHtml);
+                    }
+                });
+            }
+        });
+    }
+
+    function readCategoria(valor){
+        let dados = {
+            operacao: "buscarCategoria",
+            nome_categoria: valor
+        };
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            assync: true,
+            data: dados,
+            url: '../backend/models/produtosModel.php',
+            success: function(dados){
+                $('.ofertas').empty();
+                dados.forEach(function(produto) {
+                    if(produto.oferta == "0"){
+                        const ofertaHtml = `
+                        <a href="produto1.html?id_produto=${produto.id_produtos}">
+                            <article class="oferta">
+                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <div>
+                                    <h3 class="oferta-titulo">${produto.nome_produto}</h3>
+                                    <p class="preco-antes-oferta"></p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                </div>
+                                <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
+                            </article>
+                        </a>
+                        `;
+                        $('.ofertas').append(ofertaHtml);
+                    }else{
+                        // Calcula o preço original (antes do desconto)
+                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
+                        const ofertaHtml = `
+                        <a href="produto1.html?id_produto=${produto.id_produtos}">
+                            <article class="oferta">
+                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <div>
+                                    <h3 class="oferta-titulo">${produto.nome_produto}</h3>
+                                    <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
                                 </div>
                                 <button value=${produto.id_produtos} class="btn-comprar">Comprar</button>
                             </article>
