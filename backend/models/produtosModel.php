@@ -135,7 +135,20 @@ if ($_POST['operacao'] == 'buscar1') {
 
 if ($_POST['operacao'] == 'buscarCategoria') {
     $nome_categoria = $_POST['nome_categoria'];
-    $sql = "SELECT * FROM lojatcc.view_produtos_por_categoria WHERE nome_categoria = '".$nome_categoria."'"  ;
+    $sql = "SELECT * FROM view_produtos_por_categoria WHERE nome_categoria = '".$nome_categoria."'"  ;
+    $resultado = $pdo->query($sql);
+    $produtos = array();
+
+    while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $produtos[] = $row;
+    }
+
+    echo json_encode($produtos);
+}
+
+if ($_POST['operacao'] == 'buscarMarca') {
+    $nome_marca = $_POST['nome_marca'];
+    $sql = "SELECT * FROM produtos WHERE marca ='".$nome_marca."'";
     $resultado = $pdo->query($sql);
     $produtos = array();
 
