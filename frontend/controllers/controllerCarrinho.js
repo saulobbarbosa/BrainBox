@@ -1,5 +1,6 @@
 $(document).ready(function () {
     read();
+    recomendacoes();
 });
 
 // Função para calcular o total com base nos checkboxes marcados e quantidades
@@ -292,6 +293,39 @@ function comprar() {
                         }
                     });
                 },
+            });
+        }
+    });
+}
+
+
+function recomendacoes(){
+    let dados = {
+        operacao: "maisVendidos3"
+    };
+    $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        assync: true,
+        data: dados,
+        url: "../backend/models/produtosModel.php",
+        success: function(dados){
+            $('.prod-recomendados').empty();
+            const antesHtml = `<h1 class="recomendacao-titulo">Recomendações dos nossos produtos</h1>`;
+            $('.prod-recomendados').append(antesHtml);
+            dados.forEach(function(produto) {
+                    const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
+                    const relacionadosHtml = `
+                    <article class="prod-rec" onclick="window.location = 'produto1.html?id_produto=${produto.id_produtos}'">
+                        <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-prod-rec">
+                        <div class="grid-rec">
+                            <h3 class="nome-produto">${produto.nome}</h3>
+                            <span class="preco-produto">R$ ${trocarPontoPorVirgula(precoDesconto)}</span>
+                            <button class="btn-comprar" value=${produto.id_produtos}>Comprar</button>
+                        </div>
+                    </article>
+                    `;
+                    $('.prod-recomendados').append(relacionadosHtml);
             });
         }
     });

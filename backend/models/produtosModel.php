@@ -171,6 +171,18 @@ if ($_POST['operacao'] == 'maisVendidos') {
     echo json_encode($produtos);
 }
 
+if ($_POST['operacao'] == 'maisVendidos3') {
+    $sql = "SELECT * FROM view_detalhes_quantidade_vendida LIMIT 3";
+    $resultado = $pdo->query($sql);
+    $produtos = array();
+
+    while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $produtos[] = $row;
+    }
+
+    echo json_encode($produtos);
+}
+
 if ($_POST['operacao'] == 'buscarRelacionados') {
     $id_categoria = $_POST['id_categoria']; 
         $sql = "SELECT * FROM produtos WHERE id_categoria = ? LIMIT 5";
