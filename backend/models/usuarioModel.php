@@ -73,7 +73,7 @@ if ($_POST['operacao'] == 'create') {
                 $_POST['cpf'],
                 $_POST['nome'],
                 $_POST['email'],
-                $_POST['senha'],
+                sha1($_POST['senha']),
                 $_POST['dt_nascimento'],
                 $_POST['rua'],
                 $_POST['num_casa'],

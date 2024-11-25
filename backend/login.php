@@ -4,7 +4,7 @@ include('./connection/conn.php');
 
 if ($_POST['operacao'] == 'login') {
     $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $senha = sha1($_POST['senha']);
 
     if (empty($email) || empty($senha)) {
         echo json_encode(array('type' => 'error', 'message' => 'E-mail e senha são obrigatórios.'));
