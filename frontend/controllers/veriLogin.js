@@ -1,8 +1,12 @@
 $(document).ready(function(){
     const backend = '../backend/login.php';
-    
     verifica();
-    let taLogado;
+
+    function vaiLogar(){
+        if(window.location.href.includes("carrinho.html") && taLogado==false){
+            window.location = 'login.html'
+        }
+    }
 
     function verifica(){
         let dados = {
@@ -29,6 +33,7 @@ $(document).ready(function(){
                     taLogado = true;
                 }else{
                     taLogado = false;
+                    vaiLogar();
                 }
             }
         });

@@ -1,3 +1,5 @@
+create database lojatcc;
+
 CREATE TABLE lojatcc.carrinho(
 	id_carrinho INT NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY(id_carrinho)

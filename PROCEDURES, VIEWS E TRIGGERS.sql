@@ -1,7 +1,7 @@
 -- Procedure para verificar se o produto já está no carrinho, e se estiver só adicionar 1 em quantidade
 DELIMITER $$
 
-CREATE PROCEDURE sp_add_to_carrinho(
+CREATE PROCEDURE lojatcc.sp_add_to_carrinho(
     IN p_id_carrinho INT,
     IN p_id_produtos INT,
     IN p_quantidade INT
@@ -31,7 +31,7 @@ DELIMITER ;
 
 
 -- View para ver os produtos do carrinho
-CREATE VIEW vw_carrinho_produtos AS
+CREATE VIEW lojatcc.vw_carrinho_produtos AS
 SELECT 
     chp.id_produtos,
     p.nome AS nome_produto,
