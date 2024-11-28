@@ -20,7 +20,11 @@ $(document).ready(function() {
             success: function(response) {
                 // Se o login for bem-sucedido, redireciona para a página inicial
                 if (response.type === 'success') {
-                    window.location.href = 'index.html';
+                    if(response.adm){
+                        window.location.href = '../../TCC/dashboard.html';
+                    }else{
+                        window.location.href = 'index.html';
+                    }
                 } else {
                     // Exibe a mensagem de erro retornada pelo servidor
                    console.log(response.message);

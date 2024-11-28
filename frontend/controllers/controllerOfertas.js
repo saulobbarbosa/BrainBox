@@ -1,25 +1,25 @@
-$(document).ready(function(){
+$(document).ready(function () {
     const backend = '../backend/models/produtosModel.php';
-    
+
     const nome_produto = pegarParametroURL('n_produto');
     const nome_categoria = pegarParametroURL('n_categoria');
     const nome_marca = pegarParametroURL('n_marca');
     const extra = pegarParametroURL('extra')
-    if(nome_produto == null){
-        if(nome_categoria != null){
+    if (nome_produto == null) {
+        if (nome_categoria != null) {
             readCategoria(nome_categoria)
-        }else{
-            if(nome_marca != null){
+        } else {
+            if (nome_marca != null) {
                 readMarca(nome_marca);
-            }else{
-                if(extra == "1"){
+            } else {
+                if (extra == "1") {
                     maisVendidos();
-                }else{
+                } else {
                     read();
                 }
             }
         }
-    }else{
+    } else {
         pesquisa(nome_produto);
     }
 
@@ -27,7 +27,7 @@ $(document).ready(function(){
         return texto.toString().replace(/\./g, ',');
     }
 
-    function read(){
+    function read() {
         let dados = {
             operacao: "read"
         };
@@ -37,14 +37,30 @@ $(document).ready(function(){
             assync: true,
             data: dados,
             url: backend,
-            success: function(dados){
+            success: function (dados) {
+                let ofertaHtml;
                 $('.ofertas').empty();
-                dados.forEach(function(produto) {
-                    if(produto.oferta == "0"){
-                        const ofertaHtml = `
+                dados.forEach(function (produto) {
+                    if (produto.oferta == "0") {
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta"></p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
@@ -54,14 +70,31 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
-                    }else{
+                    } else {
                         // Calcula o preço original (antes do desconto)
-                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                        const ofertaHtml = `
+                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
@@ -71,6 +104,8 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
                     }
                 });
@@ -78,7 +113,7 @@ $(document).ready(function(){
         });
     }
 
-    function pesquisa(valor){
+    function pesquisa(valor) {
         let dados = {
             operacao: "pesquisar",
             nome_produto: valor
@@ -89,14 +124,30 @@ $(document).ready(function(){
             assync: true,
             data: dados,
             url: backend,
-            success: function(dados){
+            success: function (dados) {
+                let ofertaHtml;
                 $('.ofertas').empty();
-                dados.forEach(function(produto) {
-                    if(produto.oferta == "0"){
-                        const ofertaHtml = `
+                dados.forEach(function (produto) {
+                    if (produto.oferta == "0") {
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta"></p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
@@ -106,14 +157,31 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
-                    }else{
+                    } else {
                         // Calcula o preço original (antes do desconto)
-                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                        const ofertaHtml = `
+                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
@@ -123,6 +191,8 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
                     }
                 });
@@ -130,7 +200,7 @@ $(document).ready(function(){
         });
     }
 
-    function readCategoria(valor){
+    function readCategoria(valor) {
         let dados = {
             operacao: "buscarCategoria",
             nome_categoria: valor
@@ -141,14 +211,30 @@ $(document).ready(function(){
             assync: true,
             data: dados,
             url: backend,
-            success: function(dados){
+            success: function (dados) {
                 $('.ofertas').empty();
-                dados.forEach(function(produto) {
-                    if(produto.oferta == "0"){
-                        const ofertaHtml = `
+                let ofertaHtml;
+                dados.forEach(function (produto) {
+                    if (produto.oferta == "0") {
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome_produto}</h3>
+                                        <p class="preco-antes-oferta"></p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome_produto}</h3>
                                     <p class="preco-antes-oferta"></p>
@@ -158,14 +244,31 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
-                    }else{
+                    } else {
                         // Calcula o preço original (antes do desconto)
-                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                        const ofertaHtml = `
+                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome_produto}</h3>
+                                        <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome_produto}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
@@ -175,6 +278,8 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
                     }
                 });
@@ -182,7 +287,7 @@ $(document).ready(function(){
         });
     }
 
-    function readMarca(valor){
+    function readMarca(valor) {
         let dados = {
             operacao: "buscarMarca",
             nome_marca: valor
@@ -193,14 +298,30 @@ $(document).ready(function(){
             assync: true,
             data: dados,
             url: backend,
-            success: function(dados){
+            success: function (dados) {
+                let ofertaHtml;
                 $('.ofertas').empty();
-                dados.forEach(function(produto) {
-                    if(produto.oferta == "0"){
-                        const ofertaHtml = `
+                dados.forEach(function (produto) {
+                    if (produto.oferta == "0") {
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta"></p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
@@ -210,14 +331,31 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
-                    }else{
+                    } else {
                         // Calcula o preço original (antes do desconto)
-                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                        const ofertaHtml = `
+                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
@@ -227,6 +365,8 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
                     }
                 });
@@ -234,7 +374,7 @@ $(document).ready(function(){
         });
     }
 
-    function maisVendidos(){
+    function maisVendidos() {
         let dados = {
             operacao: "maisVendidos"
         };
@@ -244,14 +384,30 @@ $(document).ready(function(){
             assync: true,
             data: dados,
             url: backend,
-            success: function(dados){
+            success: function (dados) {
+                let ofertaHtml;
                 $('.ofertas').empty();
-                dados.forEach(function(produto) {
-                    if(produto.oferta == "0"){
-                        const ofertaHtml = `
+                dados.forEach(function (produto) {
+                    if (produto.oferta == "0") {
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta"></p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta"></p>
@@ -261,14 +417,31 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
-                    }else{
+                    } else {
                         // Calcula o preço original (antes do desconto)
-                        const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                        const ofertaHtml = `
+                        const precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                        if (produto.quantidade_estoque <= 0) {
+                            ofertaHtml = `
+                            <a href="produto1.html?id_produto=${produto.id_produtos}">
+                                <article class="oferta">
+                                    <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                    <div>
+                                        <h3 class="oferta-titulo">${produto.nome}</h3>
+                                        <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                        <p class="preco-oferta">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                    </div>
+                                    <button value=${produto.id_produtos} class="btn-comprar">Indisp..</button>
+                                </article>
+                            </a>
+                            `;
+                        } else {
+                            ofertaHtml = `
                         <a href="produto1.html?id_produto=${produto.id_produtos}">
                             <article class="oferta">
-                                <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
+                                <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-oferta img-oferta-${produto.id_produtos}">
                                 <div>
                                     <h3 class="oferta-titulo">${produto.nome}</h3>
                                     <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
@@ -278,6 +451,8 @@ $(document).ready(function(){
                             </article>
                         </a>
                         `;
+                        }
+
                         $('.ofertas').append(ofertaHtml);
                     }
                 });
@@ -290,10 +465,10 @@ $(document).ready(function(){
         return urlParams.get(name);
     }
 
-    $(document).on("click", '.btn-comprar', {'param': 10}, function(e){
+    $(document).on("click", '.btn-comprar', { 'param': 10 }, function (e) {
         e.preventDefault();
         let produto_id = $(this).val();
-        window.location = "produto1.html?id_produto="+produto_id;
+        window.location = "produto1.html?id_produto=" + produto_id;
     });
 
 });

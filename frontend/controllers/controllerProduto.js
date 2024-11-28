@@ -43,8 +43,10 @@ function buscar1() {
         url: backend,
         success: function (dados) {
             cadastrarHistorico();
+            let produtoHtml;
             if (dados.length > 0) {
                 let produto = dados[0];
+                $('title').append(produto.nome)
                 if (produto.oferta == "0") {
                     $('.produto').empty();
 
@@ -54,9 +56,24 @@ function buscar1() {
                     descricaoLinhas.forEach(function (linha) {
                         descricaoHtml += `<li>${linha}</li>`;
                     });
-
-                    const produtoHtml = `
-                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
+                    if(produto.quantidade_estoque <= 0){
+                        produtoHtml = `
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" alt="produto1" class="img-produto">
+                            <div id="dados-produto">
+                                <h1 class="titulo-produto">${produto.nome}</h1>
+                                <p class="preco-antes-oferta"></p>
+                                <p class="preco-produto">R$ ${trocarPontoPorVirgula(produto.preco)}</p>
+                                <button class="btn-comprar-produto" >Indisponível</button>
+                                <hr class="breakline">
+                                <h3 class="info-produto-titulo">informações técnicas</h3>
+                                <ul class="info-produto">
+                                    ${descricaoHtml} <!-- Descrição dividida em <li> -->
+                                </ul>
+                            </div>
+                        `;
+                    }else{
+                        produtoHtml = `
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" alt="produto1" class="img-produto">
                             <div id="dados-produto">
                                 <h1 class="titulo-produto">${produto.nome}</h1>
                                 <p class="preco-antes-oferta"></p>
@@ -69,6 +86,7 @@ function buscar1() {
                                 </ul>
                             </div>
                         `;
+                    }
 
                     $('.produto').append(produtoHtml);
                 } else {
@@ -82,8 +100,24 @@ function buscar1() {
                         descricaoHtml += `<li>${linha}</li>`;
                     });
 
-                    const produtoHtml = `
-                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" alt="produto1" class="img-produto">
+                    if(produto.quantidade_estoque <= 0){
+                        produtoHtml = `
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" alt="produto1" class="img-produto">
+                            <div id="dados-produto">
+                                <h1 class="titulo-produto">${produto.nome}</h1>
+                                <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco.toFixed(2))}</p>
+                                <p class="preco-produto">R$ ${trocarPontoPorVirgula(precoDesconto.toFixed(2))}</p>
+                                <button class="btn-comprar-produto">Indisponível</button>
+                                <hr class="breakline">
+                                <h3 class="info-produto-titulo">informações técnicas</h3>
+                                <ul class="info-produto">
+                                    ${descricaoHtml} <!-- Descrição dividida em <li> -->
+                                </ul>
+                            </div>
+                        `;
+                    }else{
+                        produtoHtml = `
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" alt="produto1" class="img-produto">
                             <div id="dados-produto">
                                 <h1 class="titulo-produto">${produto.nome}</h1>
                                 <p class="preco-antes-oferta">R$ ${trocarPontoPorVirgula(produto.preco.toFixed(2))}</p>
@@ -96,6 +130,7 @@ function buscar1() {
                                 </ul>
                             </div>
                         `;
+                    }
 
                     $('.produto').append(produtoHtml);
                 }
@@ -123,12 +158,27 @@ function readRelacionados(categoria){
         url: backend,
         success: function(dados){
             $('.produtos-relacionados').empty();
+            let relacionadosHtml;
             dados.forEach(function(produto) {
                     const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                    const relacionadosHtml = `
+                    if(produto.quantidade_estoque <= 0){
+                        relacionadosHtml = `
                     <a href="produto1.html?id_produto=${produto.id_produtos}">
                         <article class="prod-r">
-                            <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-prod-r">
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-prod-r">
+                            <div>
+                                <h3 class="prod-r-titulo">${produto.nome}</h3>
+                                <p class="preco-prod-r">R$ ${precoDesconto.toFixed(2)}</p>
+                            </div>
+                            <button class="btn-comprar">Indisp..</button>
+                        </article>
+                    </a>
+                    `;
+                    }else{
+                        relacionadosHtml = `
+                    <a href="produto1.html?id_produto=${produto.id_produtos}">
+                        <article class="prod-r">
+                            <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-prod-r">
                             <div>
                                 <h3 class="prod-r-titulo">${produto.nome}</h3>
                                 <p class="preco-prod-r">R$ ${precoDesconto.toFixed(2)}</p>
@@ -137,6 +187,8 @@ function readRelacionados(categoria){
                         </article>
                     </a>
                     `;
+                    }
+                    
                     $('.produtos-relacionados').append(relacionadosHtml);
             });
         }

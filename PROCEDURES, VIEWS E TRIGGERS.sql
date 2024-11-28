@@ -114,3 +114,23 @@ GROUP BY
     p.id_produtos
 ORDER BY
     total_vendido DESC;
+
+DELIMITER $$
+
+CREATE TRIGGER atualizar_estoque_compra
+AFTER INSERT ON lojatcc.compras
+FOR EACH ROW
+BEGIN
+    -- Atualiza a quantidade em estoque do produto comprado
+    UPDATE lojatcc.produtos
+    SET quantidade_estoque = quantidade_estoque - NEW.quantidade
+    WHERE id_produtos = NEW.id_produtos;
+
+    -- Verifica se o estoque ficou negativo, para evitar inconsistências
+    IF (SELECT quantidade_estoque FROM lojatcc.produtos WHERE id_produtos = NEW.id_produtos) < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Estoque insuficiente para a compra';
+    END IF;
+END$$
+
+DELIMITER ;

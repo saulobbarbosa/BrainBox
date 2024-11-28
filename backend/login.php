@@ -23,7 +23,12 @@ if ($_POST['operacao'] == 'login') {
             $_SESSION['user_id'] = $user['cpf'];
             $_SESSION['user_name'] = $user['nome'];
             $_SESSION['id_carrinho'] = $user['id_carrinho'];
-            echo json_encode(array('type' => 'success', 'message' => 'Login realizado com sucesso.'));
+            if($user['id_carrinho'] == 1){
+                $_SESSION['adm'] = true;
+            }else{
+                $_SESSION['adm'] = true;
+            }
+            echo json_encode(array('type' => 'success', 'message' => 'Login realizado com sucesso.', 'adm' => $_SESSION['adm']));
         } else {
             echo json_encode(array('type' => 'error', 'message' => 'Credenciais inválidas.'));
         }
@@ -34,7 +39,7 @@ if ($_POST['operacao'] == 'login') {
 
 if($_POST['operacao'] == 'verifica'){
     if(isset($_SESSION['user_id'])){
-        echo json_encode(array('nome' => $_SESSION['user_name']));
+        echo json_encode(array('nome' => $_SESSION['user_name'],'adm' => $_SESSION['adm']));
     }else{
         echo json_encode(array('type' => 'error', 'message' => 'Não logado'));
     }

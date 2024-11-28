@@ -41,30 +41,44 @@ $(document).on("click", ".desmarcartodos", function () {
 
 $(document).on("click", '.btn-comprar-produto', function () {
     let id_produtos = $('.btn-comprar-produto').val();
-    let dados = {
-        operacao: "create",
-        id_produtos: id_produtos,
-        quantidade: 1
-    };
-    $.ajax({
-        type: 'POST',
-        dataType: 'JSON',
-        assync: true,
-        data: dados,
-        url: '../backend/models/carrinho_has_produtosModel.php',
-        success: function (dados) {
-            Swal.fire({
-                title: "Sucesso!",
-                text: "Seu produto foi adicionado ao carrinho",
-                icon: "success",
-                customClass: {
-                    title: 'swal2-title',
-                    htmlContainer: 'swal2-content',
-                    confirmButton: 'swal2-confirm'
-                }
-            });
-        }
-    });
+    if (id_produtos !== undefined) {
+        let dados = {
+            operacao: "create",
+            id_produtos: id_produtos,
+            quantidade: 1
+        };
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            assync: true,
+            data: dados,
+            url: '../backend/models/carrinho_has_produtosModel.php',
+            success: function (dados) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Seu produto foi adicionado ao carrinho",
+                    icon: "success",
+                    customClass: {
+                        title: 'swal2-title',
+                        htmlContainer: 'swal2-content',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            }
+        });
+    } else {
+        Swal.fire({
+            title: "Alerta!",
+            text: "Esse produto está fora de estoque",
+            icon: "warning",
+            customClass: {
+                title: 'swal2-title',
+                htmlContainer: 'swal2-content',
+                confirmButton: 'swal2-confirm'
+            }
+        });
+    }
+
 });
 
 $(document).on("click", '.aumentar-prod', function () {
@@ -143,7 +157,7 @@ function read() {
                     const produtoHtml = `
                     <article class="box-produto">
                         <input type="checkbox" name="produto" class="checkbox-produto" value="${produto.preco_com_desconto}">
-                        <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-produto1 img-produto">
+                        <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-produto1 img-produto">
                         <div>
                             <h3 class="nome-produto">${produto.nome_produto}</h3>
                             <span class="preco-produto">R$ ${trocarPontoPorVirgula(produto.preco_com_desconto)}</span>
@@ -299,7 +313,7 @@ function comprar() {
 }
 
 
-function recomendacoes(){
+function recomendacoes() {
     let dados = {
         operacao: "maisVendidos3"
     };
@@ -309,15 +323,29 @@ function recomendacoes(){
         assync: true,
         data: dados,
         url: "../backend/models/produtosModel.php",
-        success: function(dados){
+        success: function (dados) {
+            let relacionadosHtml;
             $('.prod-recomendados').empty();
             const antesHtml = `<h1 class="recomendacao-titulo">Recomendações dos nossos produtos</h1>`;
             $('.prod-recomendados').append(antesHtml);
-            dados.forEach(function(produto) {
-                    const precoDesconto = produto.preco-(produto.preco*(produto.oferta/100));
-                    const relacionadosHtml = `
+            dados.forEach(function (produto) {
+                let precoDesconto = produto.preco - (produto.preco * (produto.oferta / 100));
+                precoDesconto = precoDesconto.toFixed(2)
+                if(produto.quantidade_estoque <=0){
+                    relacionadosHtml = `
                     <article class="prod-rec" onclick="window.location = 'produto1.html?id_produto=${produto.id_produtos}'">
-                        <img src="pagina-ofertas/assets/img/${produto.arquivo_img}" class="img-prod-rec">
+                        <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-prod-rec">
+                        <div class="grid-rec">
+                            <h3 class="nome-produto">${produto.nome}</h3>
+                            <span class="preco-produto">R$ ${trocarPontoPorVirgula(precoDesconto)}</span>
+                            <button class="btn-comprar">Indisp..</button>
+                        </div>
+                    </article>
+                    `;
+                }else{
+                    relacionadosHtml = `
+                    <article class="prod-rec" onclick="window.location = 'produto1.html?id_produto=${produto.id_produtos}'">
+                        <img src="../../TCC/backend/models/${produto.arquivo_img}" class="img-prod-rec">
                         <div class="grid-rec">
                             <h3 class="nome-produto">${produto.nome}</h3>
                             <span class="preco-produto">R$ ${trocarPontoPorVirgula(precoDesconto)}</span>
@@ -325,7 +353,9 @@ function recomendacoes(){
                         </div>
                     </article>
                     `;
-                    $('.prod-recomendados').append(relacionadosHtml);
+                }
+                
+                $('.prod-recomendados').append(relacionadosHtml);
             });
         }
     });
