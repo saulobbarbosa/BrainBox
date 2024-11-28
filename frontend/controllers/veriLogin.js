@@ -20,6 +20,10 @@ $(document).ready(function(){
             url: backend,
             success: function(dados){
                 if(dados.nome){
+                    meuLocal = window.location.href;
+                    if(meuLocal.includes('login.html')){
+                        window.location = 'index.html'
+                    }
                     $('#veriLogin').empty();
                     const loginData = `
                     <div style='font-family: "Poppins", sans-serif;'>
